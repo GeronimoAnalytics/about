@@ -1,0 +1,90 @@
+---
+import { siteConfig } from "../config";
+
+const prompt = `Fetch ${siteConfig.agentUrl} and read it as context about ${siteConfig.name} — a Senior Data Analyst and Power BI Developer.\n\nFirst, ask me about my data challenge or what I'm looking for, then wait for my answer.`;
+const encodedPrompt = encodeURIComponent(prompt);
+---
+
+<section id="agent" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="lg:col-span-4">
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+        >
+          Tell your Agent
+        </h2>
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        >
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 space-y-6">
+        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
+          Not sure if I'm a fit? Paste this into your AI / coding agent — it fetches my profile and tells you whether I can help.
+        </p>
+
+        <div class="bg-gray-900 rounded-lg p-4 sm:p-6 font-mono text-sm sm:text-base text-gray-300 leading-relaxed">
+          <p>Fetch {siteConfig.agentUrl} and read it as context about {siteConfig.name} — a Senior Data Analyst and Power BI Developer.</p>
+          <br />
+          <p>First, ask me about my data challenge or what I'm looking for, then wait for my answer.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <button
+            id="copy-prompt-btn"
+            class="px-4 py-2 rounded-lg text-sm font-medium text-white transition-colors duration-200"
+            style={`background-color: ${siteConfig.accentColor}`}
+          >
+            Copy prompt
+          </button>
+          <a
+            href={`https://chatgpt.com/?prompt=${encodedPrompt}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-800 transition-colors duration-200 inline-flex items-center gap-2"
+          >
+            ChatGPT
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a
+            href={`https://claude.ai/new?q=${encodedPrompt}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-800 transition-colors duration-200 inline-flex items-center gap-2"
+          >
+            Claude
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a
+            href={`https://www.perplexity.ai/search?q=${encodedPrompt}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-800 transition-colors duration-200 inline-flex items-center gap-2"
+          >
+            Perplexity
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ prompt }}>
+  const btn = document.getElementById('copy-prompt-btn');
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(prompt);
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy prompt'; }, 2000);
+      } catch {
+        btn.textContent = 'Failed to copy';
+        setTimeout(() => { btn.textContent = 'Copy prompt'; }, 2000);
+      }
+    });
+  }
+</script>
