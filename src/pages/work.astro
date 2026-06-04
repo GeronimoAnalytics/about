@@ -1,0 +1,312 @@
+﻿---
+import { siteConfig } from "../config";
+
+const works = [
+  {
+    title: "Commercial Sales & Revenue Dashboard",
+    category: "powerbi",
+    tags: ["Power BI"],
+    description: "Interactief executive dashboard dat \u20AC2M+ aan salesdata visualiseert. Bevat geavanceerde DAX-berekeningen voor Year-over-Year (YoY) groei en dynamische forecasts.",
+    tools: ["Power BI Desktop", "DAX", "Power Query M", "SQL"],
+    image: null,
+    link: "https://github.com/GeronimoAnalytics",
+    size: "large",
+  },
+  {
+    title: "Big Data ETL Pipeline in Databricks",
+    category: "sql",
+    tags: ["SQL"],
+    description: "End-to-end ETL-pipeline met Spark SQL en PySpark notebooks. Transformeert miljoenen rijen IoT-data naar een geoptimaliseerd Delta Lake-tabellenmodel.",
+    tools: ["Databricks", "SQL", "Python", "DBT"],
+    image: null,
+    link: "https://github.com/GeronimoAnalytics",
+    size: "small",
+  },
+  {
+    title: "Customer Churn Prediction & Analysis",
+    category: "dataviz",
+    tags: ["Data Viz"],
+    description: "Data-analyse en voorspellingsmodel in Python. Identificeert met 87% nauwkeurigheid welke klanten dreigen op te zeggen.",
+    tools: ["Python", "Pandas", "Scikit-Learn", "Power BI"],
+    image: null,
+    link: "https://github.com/GeronimoAnalytics",
+    size: "small",
+  },
+];
+
+const accent = siteConfig.accentColor;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/about/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+<meta name="description" content="Featured data visualization work by Jeroen — Senior Data Analyst and Power BI Developer" />
+    <title>Featured Work — {siteConfig.name}</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Arial, sans-serif;
+        background: white;
+        color: #1f2937;
+        min-height: 100vh;
+      }
+
+      /* Hero background matching main site */
+      .hero-bg {
+        position: relative;
+        overflow: hidden;
+        background: white;
+      }
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 800px 600px at 0% 0%, var(--accent-40) 0%, var(--accent-25) 20%, var(--accent-10) 40%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.8) 90%, white 100%);
+        z-index: 0;
+      }
+      .hero-content { position: relative; z-index: 1; }
+
+      /* Grid pattern */
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(200,200,200,0.3) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(200,200,200,0.3) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse at top right, white 0%, transparent 70%);
+        z-index: 0;
+      }
+
+      /* Filter pills */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        background: #f3f4f6;
+        color: #374151;
+        transition: all 0.2s;
+      }
+      .pill:hover { background: #e5e7eb; }
+      .pill.active { color: white; }
+
+      /* Masonry grid */
+      .masonry {
+        columns: 1;
+        column-gap: 1.5rem;
+      }
+      @media (min-width: 640px) { .masonry { columns: 2; } }
+      @media (min-width: 1024px) { .masonry { columns: 3; } }
+
+      .card {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        background: white;
+        border-radius: 1rem;
+        border: 1px solid #f3f4f6;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        overflow: hidden;
+        cursor: pointer;
+        transition: box-shadow 0.25s, transform 0.25s;
+        display: block;
+      }
+      .card:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+        transform: translateY(-3px);
+      }
+      .card.hidden { display: none; }
+
+      /* Card image */
+      .card-img {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-img.tall { height: 220px; }
+      .card-img.short { height: 140px; }
+
+      /* Modal */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .modal-overlay.open { display: flex; }
+      .modal-box {
+        background: white;
+        border-radius: 1.25rem;
+        max-width: 640px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f3f4f6;">
+      <nav style="max-width: 1152px; margin: 0 auto; padding: 1rem 1.5rem;">
+        <ul style="display: flex; align-items: center; gap: 2rem; justify-content: center; list-style: none;">
+          <li><a href="/about/#about" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">About</a></li>
+          <li><a href="/about/#projects" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Projects</a></li>
+          <li><a href="/about/#experience" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Experience</a></li>
+          <li><a href="/about/#education" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Education</a></li>
+          <li><a href="/about/work" style={`padding: 0.375rem 1rem; border-radius: 9999px; color: white; font-weight: 600; text-decoration: none; background-color: ${accent};`}>Featured Work &#10022;</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero section -->
+    <div class="hero-bg" style={`--accent-40: ${accent}66; --accent-25: ${accent}40; --accent-10: ${accent}1a; padding: 4rem 1.5rem 3rem;`}>
+      <div class="grid-pattern"></div>
+      <div class="hero-content" style="max-width: 1152px; margin: 0 auto;">
+        <h1 style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 1.25rem;">
+          Data Viz <span style={`color: ${accent}`}>Work</span>
+        </h1>
+        <p style="font-size: 1.15rem; color: #6b7280; max-width: 560px; line-height: 1.7; margin-bottom: 2.5rem;">
+          A selection of dashboards, reports, and data visualizations — built to turn complex data into clear decisions.
+        </p>
+
+        <!-- Filter pills -->
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;" id="filters">
+          <button class="pill active" data-filter="all" style={`background: ${accent}; color: white;`}>All</button>
+          <button class="pill" data-filter="powerbi">Power BI</button>
+          <button class="pill" data-filter="dataviz">Data Viz</button>
+          <button class="pill" data-filter="sql">SQL</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Masonry grid -->
+    <div style="max-width: 1152px; margin: 0 auto; padding: 3rem 1.5rem 6rem;">
+      <div class="masonry" id="work-grid">
+
+        {works.map((work) => (
+          <div
+            class="card"
+            data-category={work.category}
+            data-title={work.title}
+            data-description={work.description}
+            data-tools={JSON.stringify(work.tools)}
+            data-link={work.link}
+          >
+            <div class={`card-img ${work.size === 'large' ? 'tall' : 'short'}`} style={`background: linear-gradient(135deg, ${accent}22 0%, ${accent}55 100%)`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <div style="padding: 1.25rem 1.25rem 1.5rem;">
+              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+                {work.tags.map((tag) => (
+                  <span style={`background: ${accent}18; color: ${accent}; border: 1px solid ${accent}33; padding: 0.2rem 0.7rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;`}>{tag}</span>
+                ))}
+              </div>
+              <h3 style="font-weight: 700; font-size: 1.05rem; color: #111827; margin-bottom: 0.5rem; line-height: 1.35;">{work.title}</h3>
+              <p style="font-size: 0.875rem; color: #6b7280; line-height: 1.6;">{work.description}</p>
+              <p style={`margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: ${accent};`}>View details →</p>
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+      <div id="empty-state" style="display: none; text-align: center; padding: 6rem 0; color: #9ca3af; font-size: 1.1rem;">
+        Nothing here yet — check back soon.
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal-box">
+        <div style="padding: 2rem 2rem 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
+            <h2 id="modal-title" style="font-size: 1.5rem; font-weight: 800; color: #111827; line-height: 1.3; padding-right: 1rem;"></h2>
+            <button id="modal-close" style="background: none; border: none; cursor: pointer; color: #9ca3af; padding: 0.25rem; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>
+          <div id="modal-img" style={`height: 200px; border-radius: 0.75rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, ${accent}22, ${accent}55); display: flex; align-items: center; justify-content: center;`}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <p id="modal-description" style="color: #4b5563; line-height: 1.7; margin-bottom: 1.5rem;"></p>
+          <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 0.75rem;">Tools used</p>
+          <div id="modal-tools" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem;"></div>
+          <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer"
+            style={`display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border-radius: 0.5rem; color: white; font-weight: 600; text-decoration: none; background: ${accent};`}>
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script define:vars={{ accent }}>
+      // Filter logic
+      const pills = document.querySelectorAll('.pill');
+      const cards = document.querySelectorAll('.card');
+      const emptyState = document.getElementById('empty-state');
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => {
+            p.classList.remove('active');
+            p.style.background = '#f3f4f6';
+            p.style.color = '#374151';
+          });
+          pill.classList.add('active');
+          pill.style.background = accent;
+          pill.style.color = 'white';
+
+          const filter = pill.getAttribute('data-filter');
+          let visible = 0;
+          cards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+              card.classList.remove('hidden');
+              visible++;
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+          emptyState.style.display = visible === 0 ? 'block' : 'none';
+        });
+      });
+
+      // Modal logic
+      const modal = document.getElementById('modal');
+      const modalClose = document.getElementById('modal-close');
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          document.getElementById('modal-title').textContent = card.getAttribute('data-title');
+          document.getElementById('modal-description').textContent = card.getAttribute('data-description');
+          document.getElementById('modal-link').href = card.getAttribute('data-link');
+          const tools = JSON.parse(card.getAttribute('data-tools') || '[]');
+          document.getElementById('modal-tools').innerHTML = tools.map(t =>
+            `<span style="background:#1a3a5c;color:white;padding:0.25rem 0.75rem;border-radius:0.375rem;font-size:0.8rem;font-weight:500;">${t}</span>`
+          ).join('');
+          modal.classList.add('open');
+        });
+      });
+
+      modalClose.addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+    </script>
+  </body>
+</html>

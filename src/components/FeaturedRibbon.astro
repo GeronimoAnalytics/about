@@ -1,0 +1,33 @@
+---
+import { siteConfig } from "../config";
+---
+
+<div class="relative overflow-hidden">
+  <!-- Ribbon banner -->
+  <a
+    href="/about/work"
+    class="group flex items-center justify-between gap-4 mx-8 sm:mx-12 md:mx-16 lg:mx-24 my-4 px-6 sm:px-8 py-4 sm:py-5 rounded-2xl text-white transition-all duration-300 hover:scale-[1.01] hover:shadow-xl shadow-lg"
+    style={`background: linear-gradient(135deg, #1a3a5c 0%, ${siteConfig.accentColor} 100%)`}
+  >
+    <div class="flex items-center gap-4">
+      <!-- Chart icon -->
+      <div class="flex-shrink-0 w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-white/70">Portfolio</p>
+        <p class="text-base sm:text-lg font-bold">Featured Data Visualization Work ✦</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white transition-colors flex-shrink-0">
+      View all
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:translate-x-1">
+        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      </svg>
+    </div>
+  </a>
+</div>
