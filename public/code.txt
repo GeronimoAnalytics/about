@@ -1,0 +1,125 @@
+Flow Ratio Visual = 
+VAR _ratio = [FlowRatio]
+VAR _ratioVorig = [FlowRatio Vorige Week]
+VAR _delta = _ratio - _ratioVorig
+VAR _deltaDisplay = IF(_delta >= 0, "+" & FORMAT(_delta, "0.00"), FORMAT(_delta, "0.00"))
+VAR _deltaColor = IF(_delta <= 0, "#16a34a", "#dc2626")
+VAR _deltaIcon = IF(_delta <= 0, "▼", "▲")
+
+VAR _ratioDisplay = FORMAT(_ratio, "0.00")
+
+VAR _color =
+    IF(_ratio < 0.8, "#16a34a",
+    IF(_ratio <= 1.2, "#f59e0b",
+    "#dc2626"))
+
+VAR _icon =
+    IF(_ratio < 0.8, "📉",
+    IF(_ratio <= 1.2, "➡️",
+    "📈"))
+
+VAR _label =
+    IF(_ratio < 0.8, "Backlog shrinking",
+    IF(_ratio <= 1.2, "Stable",
+    "Backlog growing"))
+
+VAR _sublabel =
+    IF(_ratio < 0.8, "more resolved than incoming",
+    IF(_ratio <= 1.2, "inflow and outflow in balance",
+    "more incoming than resolved"))
+
+-- Scale: 0-0.8 → 0%-40%, 0.8-1.2 → 40%-60%, 1.2-3.0 → 60%-100%
+VAR _pct =
+    IF(_ratio <= 0.8,
+        (_ratio / 0.8) * 40,
+    IF(_ratio <= 1.2,
+        40 + ((_ratio - 0.8) / 0.4) * 20,
+        MIN(60 + ((_ratio - 1.2) / 1.8) * 40, 99)
+    ))
+VAR _pos = SUBSTITUTE(SUBSTITUTE(FORMAT(_pct, "0.0"), ",", "."), " ", "") & "%"
+
+RETURN
+"<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:transparent;display:flex;align-items:center;justify-content:center;height:100vh;width:100vw;padding:12px}
+.wrapper{width:100%;display:flex;gap:clamp(16px,3vw,32px);align-items:stretch;flex-wrap:wrap}
+.card{flex:1;min-width:280px;background:#fff;border-radius:20px;padding:clamp(28px,6vw,40px) clamp(16px,5vw,32px) clamp(16px,4vw,28px)}
+.info{flex:1;min-width:260px;background:#f9fafb;border-radius:20px;padding:clamp(16px,4vw,24px) clamp(16px,5vw,28px);display:flex;flex-direction:column;justify-content:center}
+.info h3{font-size:clamp(12px,2.5vw,14px);font-weight:700;color:#374151;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+.info table{width:100%;border-collapse:collapse;margin-collapse:collapse;margin-bottom:16px}
+.info th,.info td{text-align:left;padding:6px 8px;font-size:clamp(10px,2vw,12px);color:#4b5563;border-bottom:1px solid #e5e7eb}
+.info th{font-weight:600;color:#111827;background:#f3f4f6}
+.info .examples{margin-top:8px}
+.info .examples h4{font-size:clamp(11px,2.2vw,13px);font-weight:600;color:#374151;margin-bottom:8px}
+.info .ex{font-size:clamp(10px,2vw,12px);color:#4b5563;margin-bottom:6px;padding-left:8px;border-left:3px solid #e5e7eb}
+.info .ex strong{color:#111827}
+.gauge{position:relative;margin-bottom:clamp(32px,6vh,44px)}
+.track{height:clamp(10px,2vw,14px);border-radius:7px;overflow:hidden;display:flex;position:relative}
+.track::after{content:'';position:absolute;inset:0;border-radius:7px;background:linear-gradient(180deg,rgba(255,255,255,0.4) 0%,transparent 60%);pointer-events:none}
+.g{background:linear-gradient(90deg,#059669,#34d399);flex:40}
+.o{background:linear-gradient(90deg,#f59e0b,#fcd34d);flex:20}
+.r{background:linear-gradient(90deg,#f87171,#b91c1c);flex:40}
+.needle-wrap{height:28px;margin-top:-4px;width:100%;position:relative}
+.needle{position:absolute;transform:translateX(-50%);display:inline-flex;flex-direction:column;align-items:center}
+.needle-tip{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:10px solid #4E2680;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2))}
+.needle-stem{width:4px;height:14px;border-radius:0 0 3px 3px;background:linear-gradient(180deg,#4E2680,#4E2680cc);filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15))}
+.needle-dot{width:8px;height:8px;border-radius:50%;background:#4E2680;border:2px solid #fff;box-shadow:0 0 0 2px #4E268044;margin-top:-2px}
+.labels{position:relative;height:18px;margin-top:4px}
+.labels span{position:absolute;font-size:clamp(9px,1.8vw,11px);color:#9ca3af;font-weight:500;transform:translateX(-50%)}
+.main{display:flex;align-items:center;gap:clamp(12px,3vw,18px)}
+.ico{font-size:clamp(28px,6vw,44px);line-height:1}
+.num{font-size:clamp(32px,8vw,52px);font-weight:700;line-height:1;color:" & _color & "}
+.lbl{font-size:clamp(14px,3vw,18px);font-weight:600;color:" & _color & ";margin-top:5px}
+.sub{font-size:clamp(11px,2.2vw,13px);color:#9ca3af;margin-top:3px}
+.delta{margin-top:clamp(14px,3vh,18px);padding-top:clamp(12px,2.5vh,14px);border-top:1px solid #f3f4f6;display:flex;align-items:center;gap:clamp(8px,2vw,12px);flex-wrap:wrap}
+.delta-badge{font-size:clamp(13px,2.5vw,16px);font-weight:600;padding:5px 14px;border-radius:20px;background:" & _deltaColor & "15;color:" & _deltaColor & "}
+.delta-label{font-size:clamp(12px,2.2vw,14px);color:#6b7280}
+</style></head><body>
+<div class='wrapper'>
+  <div class='card'>
+    <div class='gauge'>
+      <div class='track'><div class='g'></div><div class='o'></div><div class='r'></div></div>
+      <div class='needle-wrap'>
+        <div class='needle' style='left:" & _pos & "'>
+          <div class='needle-tip'></div>
+          <div class='needle-stem'></div>
+          <div class='needle-dot'></div>
+        </div>
+      </div>
+      <div class='labels'>
+        <span style='left:0%;transform:translateX(0)'>0</span>
+        <span style='left:40%'>0.8</span>
+        <span style='left:60%'>1.2</span>
+        <span style='left:100%;transform:translateX(-100%)'>3+</span>
+      </div>
+    </div>
+    <div class='main'>
+      <div class='ico'>" & _icon & "</div>
+      <div>
+        <div class='num'>" & _ratioDisplay & "</div>
+        <div class='lbl'>" & _label & "</div>
+        <div class='sub'>" & _sublabel & "</div>
+      </div>
+    </div>
+    <div class='delta'>
+      <div class='delta-badge'>" & _deltaIcon & " " & _deltaDisplay & "</div>
+      <div class='delta-label'>vs. previous week (" & FORMAT(_ratioVorig, "0.00") & ")</div>
+    </div>
+  </div>
+  <div class='info'>
+    <h3>Definition</h3>
+    <table>
+      <tr><th>Measure</th><th>Period</th><th>What it measures</th></tr>
+      <tr><td>Flow Ratio</td><td>Last 7 days</td><td>New incidents per resolved incident</td></tr>
+      <tr><td>Flow Ratio prev. week</td><td>Days 8 to 14 ago</td><td>Same calculation, previous week</td></tr>
+    </table>
+    <div class='examples'>
+      <h4>Examples</h4>
+      <div class='ex'><strong>0.68</strong> — For every resolved incident, 0.68 new ones arrived. Backlog is shrinking.</div>
+      <div class='ex'><strong>1.00</strong> — Equal amount of inflow and outflow. Stack remains stable.</div>
+      <div class='ex'><strong>1.50</strong> — For every resolved incident, 1.5 new ones arrived. Stack is growing.</div>
+    </div>
+  </div>
+</div>
+</body></html>"

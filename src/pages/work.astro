@@ -32,6 +32,42 @@ const works = [
     link: "https://github.com/GeronimoAnalytics",
     size: "small",
   },
+  {
+    title: "Flow Ratio KPI Gauge Visual",
+    category: "powerbi",
+    tags: ["Power BI", "DAX", "HTML"],
+    summary: "Custom HTML/CSS KPI visual for real-time backlog health monitoring.",
+    description: "A bespoke HTML/CSS KPI visual within Power BI that provides the Servicedesk Team Manager with an instant, real-time pulse check on incident backlog health.\n\nBy translating the Flow Ratio—the ratio of new incoming incidents compared to resolved ones over a trailing 7-day period—into an intuitive, interactive color-coded gauge, the manager can instantly see if incoming workload and resolution output are in balance without digging into dense data tables.\n\nKey features:\n• Dynamic scale positioning using non-linear mapping across a tri-colored track\n• Instant cognitive processing through dynamic colors, titles, and icons based on thresholds\n• Week-over-week delta badge showing direction and amount of change\n• Integrated documentation panel for seamless end-user onboarding",
+    tools: ["Power BI", "DAX", "HTML5", "CSS3", "Topdesk"],
+    thumbnail: "/about/work/flowratio-card.png",
+    images: ["/about/work/flowratio-overview.png", "/about/work/flowratio-shrinking.png", "/about/work/flowratio-stable.png", "/about/work/flowratio-growing.png"],
+    link: "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
+    size: "large",
+  },
+  {
+    title: "Spurious Correlation Analysis",
+    category: "python,dataanalysis",
+    tags: ["Python", "Data Analysis"],
+    summary: "Statistical analysis proving correlation ≠ causation using pool drownings vs. Nicolas Cage films.",
+    description: "A data analysis exploring the infamous spurious correlation between swimming pool drownings in the US and the number of Nicolas Cage film appearances (2000–2009).\n\nThis project demonstrates why correlation does not imply causation. Using real data popularized by Tyler Vigen, we perform a statistical analysis showing a surprisingly high Pearson correlation (r ≈ 0.75, p = 0.013) between two completely unrelated variables.\n\nThe notebook covers:\n• Data exploration — summary statistics of both variables\n• Correlation calculation — Pearson r using pandas\n• Dual Y-axis visualization — time series plot showing both trends\n• Statistical significance testing — p-value via scipy.stats.pearsonr\n• Scatter plot with regression line — visual relationship + R²\n• Discussion — why spurious correlations exist and what causes them\n\nKey results: Pearson r = 0.75, P-value = 0.013, R² = 0.56. Despite statistical significance, this is purely coincidental — a classic reminder that data can mislead without proper causal reasoning.",
+    tools: ["Python", "Pandas", "Matplotlib", "SciPy", "NumPy"],
+    thumbnail: "/about/work/spurious-correlation-card.png",
+    images: ["/about/work/spurious-correlation-card.png"],
+    link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/spurious_correlation_analysis",
+    size: "large",
+  },
+  {
+    title: "Divorce Rate vs. Margarine Consumption",
+    category: "python,dataanalysis",
+    tags: ["Python", "Data Analysis"],
+    summary: "Near-perfect spurious correlation (r ≈ 0.99) between Maine divorces and US margarine consumption.",
+    description: "An analysis of the near-perfect spurious correlation between the divorce rate in Maine and per capita margarine consumption in the US (2000–2009).\n\nThis notebook explores an almost perfect correlation (r ≈ 0.99) between two completely unrelated variables: how many people divorce in Maine and how much margarine Americans eat. Both variables happened to decline at nearly identical rates during 2000–2009.\n\nThis is perhaps the most famous example from Tyler Vigen's collection — a powerful demonstration that even r = 0.99 with p < 0.001 means nothing without a causal mechanism.\n\nThe notebook covers:\n• Dataset exploration with pandas\n• Pearson correlation coefficient calculation\n• Dual Y-axis time series visualization\n• Statistical significance testing (p-value)\n• Scatter plot with regression line\n• Discussion of correlation vs. causation\n\nKey results: Pearson r = 0.9926, P-value < 0.000001, R² = 0.99.",
+    tools: ["Python", "Pandas", "Matplotlib", "SciPy", "NumPy"],
+    thumbnail: "/about/work/divorce-margarine-card.png",
+    images: ["/about/work/divorce-margarine-card.png"],
+    link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/divorce_vs_margarine",
+    size: "large",
+  },
 ];
 
 const accent = siteConfig.accentColor;
@@ -129,8 +165,8 @@ const accent = siteConfig.accentColor;
         align-items: center;
         justify-content: center;
       }
-      .card-img.tall { height: 220px; }
-      .card-img.short { height: 140px; }
+      .card-img.tall { height: 280px; }
+      .card-img.short { height: 160px; }
 
       /* Modal */
       .modal-overlay {
@@ -151,8 +187,24 @@ const accent = siteConfig.accentColor;
         max-width: 640px;
         width: 100%;
         max-height: 90vh;
-        overflow-y: auto;
+        overflow: hidden;
         box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+      }
+      .modal-box-inner {
+        overflow-y: auto;
+        max-height: 90vh;
+        padding: 2rem 2rem 2.5rem;
+      }
+      .modal-box-inner::-webkit-scrollbar {
+        width: 6px;
+      }
+      .modal-box-inner::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 1.25rem 0;
+      }
+      .modal-box-inner::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 3px;
       }
     </style>
   </head>
@@ -186,6 +238,8 @@ const accent = siteConfig.accentColor;
         <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;" id="filters">
           <button class="pill active" data-filter="all" style={`background: ${accent}; color: white;`}>All</button>
           <button class="pill" data-filter="powerbi">Power BI</button>
+          <button class="pill" data-filter="python">Python</button>
+          <button class="pill" data-filter="dataanalysis">Data Analysis</button>
           <button class="pill" data-filter="dataviz">Data Viz</button>
           <button class="pill" data-filter="sql">SQL</button>
         </div>
@@ -204,11 +258,16 @@ const accent = siteConfig.accentColor;
             data-description={work.description}
             data-tools={JSON.stringify(work.tools)}
             data-link={work.link}
+            data-images={JSON.stringify(work.images || [])}
           >
             <div class={`card-img ${work.size === 'large' ? 'tall' : 'short'}`} style={`background: linear-gradient(135deg, ${accent}22 0%, ${accent}55 100%)`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-              </svg>
+              {work.thumbnail ? (
+                <img src={work.thumbnail} alt={work.title} style="width: 100%; height: 100%; object-fit: contain; image-rendering: -webkit-optimize-contrast; background: #f9fafb;" />
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              )}
             </div>
             <div style="padding: 1.25rem 1.25rem 1.5rem;">
               <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
@@ -217,7 +276,7 @@ const accent = siteConfig.accentColor;
                 ))}
               </div>
               <h3 style="font-weight: 700; font-size: 1.05rem; color: #111827; margin-bottom: 0.5rem; line-height: 1.35;">{work.title}</h3>
-              <p style="font-size: 0.875rem; color: #6b7280; line-height: 1.6;">{work.description}</p>
+              <p style="font-size: 0.875rem; color: #6b7280; line-height: 1.6;">{work.summary || work.description.split('\n')[0]}</p>
               <p style={`margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: ${accent};`}>View details →</p>
             </div>
           </div>
@@ -233,19 +292,15 @@ const accent = siteConfig.accentColor;
     <!-- Modal -->
     <div class="modal-overlay" id="modal">
       <div class="modal-box">
-        <div style="padding: 2rem 2rem 2.5rem;">
+        <div class="modal-box-inner">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
             <h2 id="modal-title" style="font-size: 1.5rem; font-weight: 800; color: #111827; line-height: 1.3; padding-right: 1rem;"></h2>
             <button id="modal-close" style="background: none; border: none; cursor: pointer; color: #9ca3af; padding: 0.25rem; flex-shrink: 0;">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
           </div>
-          <div id="modal-img" style={`height: 200px; border-radius: 0.75rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, ${accent}22, ${accent}55); display: flex; align-items: center; justify-content: center;`}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-          </div>
-          <p id="modal-description" style="color: #4b5563; line-height: 1.7; margin-bottom: 1.5rem;"></p>
+          <div id="modal-gallery" style="margin-bottom: 1.5rem;"></div>
+          <div id="modal-description" style="color: #4b5563; line-height: 1.7; margin-bottom: 1.5rem; white-space: pre-line;"></div>
           <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 0.75rem;">Tools used</p>
           <div id="modal-tools" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem;"></div>
           <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer"
@@ -277,7 +332,8 @@ const accent = siteConfig.accentColor;
           const filter = pill.getAttribute('data-filter');
           let visible = 0;
           cards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            const categories = card.getAttribute('data-category').split(',');
+            if (filter === 'all' || categories.includes(filter)) {
               card.classList.remove('hidden');
               visible++;
             } else {
@@ -297,6 +353,21 @@ const accent = siteConfig.accentColor;
           document.getElementById('modal-title').textContent = card.getAttribute('data-title');
           document.getElementById('modal-description').textContent = card.getAttribute('data-description');
           document.getElementById('modal-link').href = card.getAttribute('data-link');
+
+          // Gallery
+          const images = JSON.parse(card.getAttribute('data-images') || '[]');
+          const gallery = document.getElementById('modal-gallery');
+          if (images.length > 0) {
+            gallery.innerHTML = images.map(src =>
+              `<img src="${src}" alt="" style="width:100%;border-radius:0.75rem;margin-bottom:0.75rem;display:block;" />`
+            ).join('');
+          } else {
+            gallery.innerHTML = `<div style="height:200px;border-radius:0.75rem;background:linear-gradient(135deg,${accent}22,${accent}55);display:flex;align-items:center;justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>`;
+          }
+
+          // Tools
           const tools = JSON.parse(card.getAttribute('data-tools') || '[]');
           document.getElementById('modal-tools').innerHTML = tools.map(t =>
             `<span style="background:#1a3a5c;color:white;padding:0.25rem 0.75rem;border-radius:0.375rem;font-size:0.8rem;font-weight:500;">${t}</span>`

@@ -1,0 +1,28 @@
+Short Summary (For the Card)
+Designed and coded a bespoke HTML/CSS KPI visual within Power BI to provide the Servicedesk Team Manager with an instant, real-time pulse check on incident backlog health. By translating a complex Topdesk metric—the Flow Ratio—into an intuitive, interactive color-coded gauge, the manager can instantly see if incoming workload and resolution output are in balance without digging into dense data tables.
+
+Long Description (For the Project Details / Pop-up)
+The Challenge
+The Servicedesk Team Manager struggled to quickly assess the immediate operational health of the ticket queue. While detailed data tables existed for Topdesk Incident Management, they lacked a high-level operational pulse. The key question the manager needed answered at any given moment wasn't a granular breakdown, but a simple: "Are we good right now?" Standard out-of-the-box Power BI visuals fell short of delivering a highly styled, dynamic, and compact linear gauge that could simultaneously display current metrics, historical context (week-over-week trends), definitions, and dynamic behavioral coloring in a single, executive-ready view.
+
+The Solution
+To solve this, I engineered a highly tailored DAX measure that dynamically injects data directly into an integrated HTML/CSS structure, rendered seamlessly via the Power BI HTML5 Visual.
+
+The core of the visual centers around the Flow Ratio (the ratio of new incoming incidents compared to resolved ones over a trailing 7-day period):
+
+Dynamic Scale Positioning: Using custom DAX calculations, the visual maps the ratio value non-linearly across a tri-colored linear track (Green/Orange/Red) to realistically represent backlog impact.
+
+Instant Cognitive Processing: The visual dynamically changes colors, titles, descriptions, and descriptive icons based on the ratio thresholds. A value under 0.8 turns green (Backlog shrinking), 0.8 - 1.2 turns orange (Stable), and anything above 1.2 alerts red (Backlog growing).
+
+Context at a Glance: The visual packs a week-over-week delta badge (showing direction and amount of change) alongside an integrated documentation/definition panel for seamless end-user onboarding.
+
+Now, instead of interpreting raw numbers, the manager gets an instant answer to queue stability the moment the dashboard opens.
+
+Tools & Stack
+BI Platform: Microsoft Power BI
+
+Data Source: Topdesk (Incident Management)
+
+Languages: DAX (Data Analysis Expressions), HTML5, CSS3 (Flexbox, CSS Clamping for responsiveness)
+
+Visuals utilized: HTML Content / HTML5 Visual for Power BI
