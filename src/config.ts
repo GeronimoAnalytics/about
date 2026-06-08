@@ -29,25 +29,25 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Commercial Sales & Revenue Dashboard",
+      name: "Flow Ratio KPI Gauge Visual",
       description:
-        "Interactief executive dashboard dat €2M+ aan salesdata visualiseert. Bevat geavanceerde DAX-berekeningen voor Year-over-Year (YoY) groei en dynamische forecasts om knelpunten in de supply chain bloot te leggen.",
-      link: "https://github.com",
-      skills: ["Power BI", "DAX", "Power Query"],
+        "A bespoke HTML/CSS KPI visual within Power BI for real-time backlog health monitoring. Translates the Flow Ratio into an intuitive color-coded gauge with week-over-week trends.",
+      link: "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
+      skills: ["Power BI", "DAX", "HTML", "CSS"],
     },
     {
-      name: "Big Data ETL Pipeline in Databricks",
+      name: "Chocolate Consumption vs. Nobel Prize Winners",
       description:
-        "Ontwikkeling van een end-to-end ETL-pipeline met Spark SQL en PySpark notebooks. Transformeert miljoenen rijen ongestructureerde IoT-data naar een geoptimaliseerd Delta Lake-tabellenmodel voor snelle business intelligence.",
-      link: "https://github.com",
-      skills: ["SQL", "Databricks", "Python"],
+        "Does eating chocolate make a country smarter? Exploring the famous Messerli (2012) spurious correlation (r ≈ 0.88) between chocolate consumption and Nobel Prizes per capita.",
+      link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
+      skills: ["Python", "Pandas", "Matplotlib", "SciPy"],
     },
     {
-      name: "Customer Churn Prediction & Analysis",
+      name: "Las Vegas Weddings vs. Polar Bear Activity",
       description:
-        "Data-analyse en voorspellingsmodel geschreven in Python (Pandas/Scikit-Learn). Identificeert met 87% nauwkeurigheid welke klanten dreigen op te zeggen, inclusief geautomatiseerde PDF-rapportages voor het marketingteam.",
-      link: "https://github.com",
-      skills: ["Python", "SQL", "Power BI"],
+        "Do weddings in Vegas activate polar bears? A monthly analysis showing how seasonal confounding creates a near-perfect (r ≈ 0.95) but completely meaningless correlation.",
+      link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
+      skills: ["Python", "Pandas", "Matplotlib", "SciPy"],
     },
   ],
   experience: [

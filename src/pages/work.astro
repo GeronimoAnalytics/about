@@ -3,36 +3,6 @@ import { siteConfig } from "../config";
 
 const works = [
   {
-    title: "Commercial Sales & Revenue Dashboard",
-    category: "powerbi",
-    tags: ["Power BI"],
-    description: "Interactief executive dashboard dat \u20AC2M+ aan salesdata visualiseert. Bevat geavanceerde DAX-berekeningen voor Year-over-Year (YoY) groei en dynamische forecasts.",
-    tools: ["Power BI Desktop", "DAX", "Power Query M", "SQL"],
-    image: null,
-    link: "https://github.com/GeronimoAnalytics",
-    size: "large",
-  },
-  {
-    title: "Big Data ETL Pipeline in Databricks",
-    category: "sql",
-    tags: ["SQL"],
-    description: "End-to-end ETL-pipeline met Spark SQL en PySpark notebooks. Transformeert miljoenen rijen IoT-data naar een geoptimaliseerd Delta Lake-tabellenmodel.",
-    tools: ["Databricks", "SQL", "Python", "DBT"],
-    image: null,
-    link: "https://github.com/GeronimoAnalytics",
-    size: "small",
-  },
-  {
-    title: "Customer Churn Prediction & Analysis",
-    category: "dataviz",
-    tags: ["Data Viz"],
-    description: "Data-analyse en voorspellingsmodel in Python. Identificeert met 87% nauwkeurigheid welke klanten dreigen op te zeggen.",
-    tools: ["Python", "Pandas", "Scikit-Learn", "Power BI"],
-    image: null,
-    link: "https://github.com/GeronimoAnalytics",
-    size: "small",
-  },
-  {
     title: "Flow Ratio KPI Gauge Visual",
     category: "powerbi",
     tags: ["Power BI", "DAX", "HTML"],
@@ -68,6 +38,43 @@ const works = [
     link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/divorce_vs_margarine",
     size: "large",
   },
+  {
+    title: "Chocolate Consumption vs. Nobel Prize Winners",
+    category: "python,dataanalysis",
+    tags: ["Python", "Data Analysis"],
+    summary: "Does eating chocolate make a country smarter? Exploring the famous Messerli (2012) correlation (r ≈ 0.88).",
+    description: "An analysis of the famous correlation between per capita chocolate consumption and Nobel Prize winners, inspired by the Messerli (2012) study published in the New England Journal of Medicine.\n\nThis notebook explores a strong correlation (r ≈ 0.88) between how much chocolate a country eats and how many Nobel Prize winners it produces per capita. While statistically highly significant (p < 0.0001), this is a textbook example of confounding variables — wealth and education spending drive both.\n\nThe notebook covers:\n• Cross-country dataset (14 countries)\n• Pearson correlation coefficient calculation\n• Labeled scatter plot showing each country\n• Statistical significance testing (p-value)\n• Regression line with R²\n• Discussion of confounders and why correlation ≠ causation\n\nKey results: Pearson r = 0.88, P-value = 0.000037, R² = 0.77.",
+    tools: ["Python", "Pandas", "Matplotlib", "SciPy", "NumPy"],
+    thumbnail: "/about/work/chocolate-nobel-card.png",
+    images: ["/about/work/chocolate-nobel-card.png"],
+    link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
+    size: "large",
+  },
+  {
+    title: "Las Vegas Weddings vs. Polar Bear Activity",
+    category: "python,dataanalysis",
+    tags: ["Python", "Data Analysis"],
+    summary: "Do weddings in Vegas activate polar bears? Seasonal confounding creates a near-perfect r ≈ 0.95 correlation.",
+    description: "A monthly analysis showing how shared seasonality creates extremely strong but completely meaningless correlations.\n\nThis notebook explores a near-perfect correlation (r ≈ 0.95) between the number of Las Vegas weddings and polar bear active hours at San Diego Zoo — both following the same seasonal cycle (peak in summer, low in winter).\n\nThis is a textbook example of seasonal confounding: two unrelated phenomena that both happen to peak in summer will always appear correlated.\n\nThe notebook covers:\n• Monthly dataset (12 months)\n• Pearson correlation coefficient calculation\n• Dual Y-axis time series visualization\n• Statistical significance testing (p-value)\n• Scatter plot with regression line and month labels\n• Discussion of seasonality as a confounder\n\nKey results: Pearson r = 0.95, P-value = 0.000003, R² = 0.90.\n\nThe lesson: Always check for seasonal/cyclical confounders! Any two variables that peak in summer will appear highly correlated with each other.",
+    tools: ["Python", "Pandas", "Matplotlib", "SciPy", "NumPy"],
+    thumbnail: "/about/work/vegas-polar-bears-card.png",
+    images: ["/about/work/vegas-polar-bears-card.png"],
+    link: "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
+    size: "large",
+  },
+  {
+    title: "Power BI Landing Page — 3D Particle Animation",
+    category: "powerbi,html",
+    tags: ["Power BI", "DAX", "UX Design", "HTML"],
+    summary: "Premium immersive portal with 8,000 morphing 3D particles using Three.js inside Power BI.",
+    description: "A bespoke HTML/CSS/WebGL landing page within Power BI that provides users with a premium, immersive portal experience upon entering the report environment.\n\nBy translating a dynamic cloud of 8,000 independent 3D particles into a fluidly morphing visual — transitioning seamlessly between a rotating cosmic sphere and sharp typography — the asset redefines report onboarding and elevates the overall presentation of enterprise analytics.\n\nKey features:\n• High-performance 3D particle engineering using Three.js and WebGL for smooth fluid movement\n• Advanced canvas pixel-to-vector mapping to transform abstract shapes into crisp, legible text elements\n• Lightweight and responsive layout using CSS clamp() to ensure seamless integration across all screen sizes\n• Optimized rendering architecture that maintains fluid animation speeds without impacting native report performance\n\nMake it your own:\nThe code is structured to be completely modular and adaptable. The core typography, particle density, animation speeds, and the theme palette (currently configured in premium purple and mint teal) can be easily adjusted within the script to align perfectly with any corporate brand identity.",
+    tools: ["Power BI", "DAX", "Three.js", "HTML", "CSS3", "JavaScript", "UX Design"],
+    thumbnail: "/about/work/landingpage-card.png",
+    video: "https://www.youtube.com/embed/gACAfd8Kuhs",
+    images: ["/about/work/landingpage-1.png", "/about/work/landingpage-2.png", "/about/work/landingpage-3.png"],
+    link: "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI%20Landing%20Page",
+    size: "large",
+  },
 ];
 
 const accent = siteConfig.accentColor;
@@ -87,6 +94,13 @@ const accent = siteConfig.accentColor;
         background: white;
         color: #1f2937;
         min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Responsive nav */
+      @media (max-width: 768px) {
+        #desktop-nav { display: none !important; }
+        #work-menu-toggle { display: block !important; }
       }
 
       /* Hero background matching main site */
@@ -208,19 +222,38 @@ const accent = siteConfig.accentColor;
       }
     </style>
   </head>
-  <body>
+  <body style="overflow-x: hidden;">
 
     <!-- Header -->
     <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f3f4f6;">
-      <nav style="max-width: 1152px; margin: 0 auto; padding: 1rem 1.5rem;">
-        <ul style="display: flex; align-items: center; gap: 2rem; justify-content: center; list-style: none;">
-          <li><a href="/about/#about" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">About</a></li>
-          <li><a href="/about/#projects" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Projects</a></li>
-          <li><a href="/about/#experience" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Experience</a></li>
-          <li><a href="/about/#education" style="color: #374151; text-decoration: none; font-weight: 500; transition: color 0.2s;">Education</a></li>
+      <nav style="max-width: 1152px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: center;">
+        <!-- Desktop nav -->
+        <ul id="desktop-nav" style="display: flex; align-items: center; gap: 2rem; list-style: none;">
+          <li><a href="/about/" style="color: #374151; text-decoration: none; font-weight: 500;">Home</a></li>
+          <li><a href="/about/#about" style="color: #374151; text-decoration: none; font-weight: 500;">About</a></li>
+          <li><a href="/about/#projects" style="color: #374151; text-decoration: none; font-weight: 500;">Projects</a></li>
+          <li><a href="/about/#experience" style="color: #374151; text-decoration: none; font-weight: 500;">Experience</a></li>
+          <li><a href="/about/#education" style="color: #374151; text-decoration: none; font-weight: 500;">Education</a></li>
           <li><a href="/about/work" style={`padding: 0.375rem 1rem; border-radius: 9999px; color: white; font-weight: 600; text-decoration: none; background-color: ${accent};`}>Featured Work &#10022;</a></li>
         </ul>
+        <!-- Mobile hamburger -->
+        <button id="work-menu-toggle" style="display: none; margin-left: auto; padding: 0.5rem; background: none; border: none; cursor: pointer; color: #374151;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
       </nav>
+      <!-- Mobile dropdown -->
+      <div id="work-mobile-menu" style="display: none; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-top: 1px solid #f3f4f6; padding: 0.5rem 1.5rem 1rem;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.25rem;">
+          <li><a href="/about/" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Home</a></li>
+          <li><a href="/about/#about" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">About</a></li>
+          <li><a href="/about/#projects" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Projects</a></li>
+          <li><a href="/about/#experience" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Experience</a></li>
+          <li><a href="/about/#education" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Education</a></li>
+          <li><a href="/about/work" style={`display: inline-block; margin-top: 0.5rem; padding: 0.375rem 1rem; border-radius: 9999px; color: white; font-weight: 600; text-decoration: none; background-color: ${accent};`}>Featured Work &#10022;</a></li>
+        </ul>
+      </div>
     </header>
 
     <!-- Hero section -->
@@ -242,6 +275,7 @@ const accent = siteConfig.accentColor;
           <button class="pill" data-filter="dataanalysis">Data Analysis</button>
           <button class="pill" data-filter="dataviz">Data Viz</button>
           <button class="pill" data-filter="sql">SQL</button>
+          <button class="pill" data-filter="html">HTML</button>
         </div>
       </div>
     </div>
@@ -259,6 +293,7 @@ const accent = siteConfig.accentColor;
             data-tools={JSON.stringify(work.tools)}
             data-link={work.link}
             data-images={JSON.stringify(work.images || [])}
+            data-video={work.video || ""}
           >
             <div class={`card-img ${work.size === 'large' ? 'tall' : 'short'}`} style={`background: linear-gradient(135deg, ${accent}22 0%, ${accent}55 100%)`}>
               {work.thumbnail ? (
@@ -313,6 +348,16 @@ const accent = siteConfig.accentColor;
     </div>
 
     <script define:vars={{ accent }}>
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('work-menu-toggle');
+      const mobileMenu = document.getElementById('work-mobile-menu');
+      menuToggle?.addEventListener('click', () => {
+        mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+      });
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
+      });
+
       // Filter logic
       const pills = document.querySelectorAll('.pill');
       const cards = document.querySelectorAll('.card');
@@ -354,13 +399,27 @@ const accent = siteConfig.accentColor;
           document.getElementById('modal-description').textContent = card.getAttribute('data-description');
           document.getElementById('modal-link').href = card.getAttribute('data-link');
 
-          // Gallery
-          const images = JSON.parse(card.getAttribute('data-images') || '[]');
+          // Video embed
+          const video = card.getAttribute('data-video');
           const gallery = document.getElementById('modal-gallery');
+          let galleryHTML = '';
+
+          if (video) {
+            galleryHTML += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:0.75rem;margin-bottom:0.75rem;">
+              <iframe src="${video}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0.75rem;" allowfullscreen></iframe>
+            </div>`;
+          }
+
+          // Gallery images
+          const images = JSON.parse(card.getAttribute('data-images') || '[]');
           if (images.length > 0) {
-            gallery.innerHTML = images.map(src =>
+            galleryHTML += images.map(src =>
               `<img src="${src}" alt="" style="width:100%;border-radius:0.75rem;margin-bottom:0.75rem;display:block;" />`
             ).join('');
+          }
+
+          if (galleryHTML) {
+            gallery.innerHTML = galleryHTML;
           } else {
             gallery.innerHTML = `<div style="height:200px;border-radius:0.75rem;background:linear-gradient(135deg,${accent}22,${accent}55);display:flex;align-items:center;justify-content:center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
