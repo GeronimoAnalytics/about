@@ -85,6 +85,37 @@ export default config({
             itemLabel: (props) => props.fields.school.value || "Education",
           }
         ),
+        featuredWork: fields.array(
+          fields.object(
+            {
+              title: fields.text({ label: "Title" }),
+              category: fields.text({ label: "Category (comma-separated)" }),
+              tags: fields.array(fields.text({ label: "Tag" }), {
+                label: "Tags",
+                itemLabel: (props) => props.value || "Tag",
+              }),
+              summary: fields.text({ label: "Summary", multiline: true }),
+              description: fields.text({ label: "Description", multiline: true }),
+              tools: fields.array(fields.text({ label: "Tool" }), {
+                label: "Tools",
+                itemLabel: (props) => props.value || "Tool",
+              }),
+              thumbnail: fields.text({ label: "Thumbnail Path" }),
+              images: fields.array(fields.text({ label: "Image Path" }), {
+                label: "Images",
+                itemLabel: (props) => props.value || "Image",
+              }),
+              video: fields.text({ label: "Video URL" }),
+              link: fields.url({ label: "Project Link" }),
+              size: fields.text({ label: "Card Size (large/short)" }),
+            },
+            { label: "Featured Work Item" }
+          ),
+          {
+            label: "Featured Work",
+            itemLabel: (props) => props.fields.title.value || "Work item",
+          }
+        ),
       },
     }),
   },

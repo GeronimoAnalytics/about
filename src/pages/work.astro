@@ -1,7 +1,7 @@
 ﻿---
 import { siteConfig } from "../config";
 
-const works = [
+const defaultWorks = [
   {
     title: "Flow Ratio KPI Gauge Visual",
     category: "powerbi",
@@ -64,6 +64,8 @@ const works = [
     size: "large",
   },
 ];
+
+const works = siteConfig.featuredWork ?? [];
 
 const accent = siteConfig.accentColor;
 ---
