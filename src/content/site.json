@@ -148,7 +148,7 @@
   "featuredWork": [
     {
       "title": "Power BI Custom Visual Bubble to Bar",
-      "category": "Power BI, DAX, HTML, Data Viz",
+      "category": "powerbi,html,dataviz",
       "tags": [
         "Power BI",
         "UX Design",
@@ -163,9 +163,9 @@
         "SVG",
         "SMIL"
       ],
-      "thumbnail": "/about/work/HeaderBubble.png",
+      "thumbnail": "/about/HeaderBubble.png",
       "images": [
-        "about/work/public/BubbletoBar.png"
+        "/about/BubbletoBar.png"
       ],
       "video": "https://youtu.be/rTUxAZ62Hhs",
       "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/BubbleToBar",
