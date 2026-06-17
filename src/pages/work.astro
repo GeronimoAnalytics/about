@@ -338,6 +338,44 @@ const accent = siteConfig.accentColor;
     </div>
 
     <script define:vars={{ accent }}>
+      const toEmbeddableVideoUrl = (input) => {
+        if (!input) return "";
+
+        try {
+          const url = new URL(input);
+          const host = url.hostname.replace(/^www\./, "").toLowerCase();
+
+          // Already embeddable URL.
+          if (url.pathname.startsWith("/embed/")) {
+            return input;
+          }
+
+          // youtu.be/<id>
+          if (host === "youtu.be") {
+            const id = url.pathname.split("/").filter(Boolean)[0];
+            return id ? `https://www.youtube.com/embed/${id}` : "";
+          }
+
+          // youtube.com/watch?v=<id>
+          if (host === "youtube.com" || host === "m.youtube.com") {
+            if (url.pathname === "/watch") {
+              const id = url.searchParams.get("v");
+              return id ? `https://www.youtube.com/embed/${id}` : "";
+            }
+
+            // youtube.com/shorts/<id> and youtube.com/live/<id>
+            const parts = url.pathname.split("/").filter(Boolean);
+            if ((parts[0] === "shorts" || parts[0] === "live") && parts[1]) {
+              return `https://www.youtube.com/embed/${parts[1]}`;
+            }
+          }
+        } catch {
+          return "";
+        }
+
+        return input;
+      };
+
       // Mobile menu toggle
       const menuToggle = document.getElementById('work-menu-toggle');
       const mobileMenu = document.getElementById('work-mobile-menu');
@@ -390,7 +428,8 @@ const accent = siteConfig.accentColor;
           document.getElementById('modal-link').href = card.getAttribute('data-link');
 
           // Video embed
-          const video = card.getAttribute('data-video');
+          const rawVideo = card.getAttribute('data-video');
+          const video = toEmbeddableVideoUrl(rawVideo);
           const gallery = document.getElementById('modal-gallery');
           let galleryHTML = '';
 
