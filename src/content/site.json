@@ -147,6 +147,31 @@
   ],
   "featuredWork": [
     {
+      "title": "Power BI Custom Visual Bubble to Bar",
+      "category": "Power BI, DAX, HTML, Data Viz",
+      "tags": [
+        "Power BI",
+        "UX Design",
+        "Data Viz",
+        "HTML"
+      ],
+      "summary": "Custom HTML / CSS visual for age distribution by gender. Bubble to Bar chart moving elements.",
+      "description": "An interactive, animated SVG population bubble chart moving towards a horizontal bar chart built entirely within a single Power BI DAX measure.\n\nInstead of using standard, static bar charts, this custom asset renders demographic data as thousands of independent data points (particles). Upon hitting the native 'Play' button, the particles fluidly animate from a starting pool and fly to their respective age and gender categories—creating an engaging, application-like experience directly inside the report canvas.\n\nKey features:\n\nNative SMIL animation: Uses lightweight, built-in SVG animation paths so elements smoothly drift, overshoot, and snap into place without needing external JavaScript libraries\n\nInteractive playback control: Features fully functional 'Play' and 'Replay' buttons coded directly into the SVG string to control the visual state on demand\n\nDynamic data-to-pixel mapping: Translates row counts from the model into beautifully stacked dot matrices, automatically adjusting spacing and row heights\n\nPremium visual styling: Enhanced with glowing radial gradients, soft background bands, and distinct color transitions for gender distributions\n\nMake it your own:\nThe layout boundaries, colors (currently a sleek pink and soft blue theme), animation speeds, and dot characters are driven by simple DAX variables at the top of the measure. You can quickly adapt the styling to match any brand guidelines or repurpose the particle physics for other tracking metrics.",
+      "tools": [
+        "Power BI",
+        "DAX",
+        "SVG",
+        "SMIL"
+      ],
+      "thumbnail": "/about/work/HeaderBubble.png",
+      "images": [
+        "about/work/public/BubbletoBar.png"
+      ],
+      "video": "https://youtu.be/rTUxAZ62Hhs",
+      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/BubbleToBar",
+      "size": "large"
+    },
+    {
       "title": "Flow Ratio KPI Gauge Visual",
       "category": "powerbi",
       "tags": [
