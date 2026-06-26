@@ -213,9 +213,9 @@
       ],
       "thumbnail": "/about/headeriss.png",
       "images": [
-        "about/Screenshot 2026-06-25 144052.png",
-        "about/Screenshot 2026-06-25 152046.png",
-        "about/eventstream.png"
+        "/about/Screenshot 2026-06-25 144052.png",
+        "/about/Screenshot 2026-06-25 152046.png",
+        "/about/eventstream.png"
       ],
       "video": "https://youtu.be/YIpPx7aa1Hw",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/01_realtime-iss-tracker",
