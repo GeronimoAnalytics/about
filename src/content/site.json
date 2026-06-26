@@ -42,7 +42,7 @@
     {
       "name": "Chocolate Consumption vs. Nobel Prize Winners",
       "description": "Does eating chocolate make a country smarter? Exploring the famous Messerli (2012) spurious correlation (r = 0.88) between chocolate consumption and Nobel Prizes per capita.",
-      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/chocolate_vs_nobel",
       "skills": [
         "Python",
         "Pandas",
@@ -53,7 +53,7 @@
     {
       "name": "Las Vegas Weddings vs. Polar Bear Activity",
       "description": "Do weddings in Vegas activate polar bears? A monthly analysis showing how seasonal confounding creates a near-perfect (r = 0.95) but completely meaningless correlation.",
-      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/vegas_weddings_vs_polar_bears",
       "skills": [
         "Python",
         "Pandas",
@@ -218,7 +218,7 @@
       "images": [
         "/about/work/chocolate-nobel-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/chocolate_vs_nobel",
       "size": "large"
     },
     {
@@ -271,7 +271,7 @@
       "images": [
         "/about/work/vegas-polar-bears-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/vegas_weddings_vs_polar_bears",
       "size": "large"
     },
     {
@@ -294,7 +294,7 @@
       "images": [
         "/about/work/divorce-margarine-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/divorce_vs_margarine",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/divorce_vs_margarine",
       "size": "large"
     }
   ]
