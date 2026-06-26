@@ -174,7 +174,7 @@
     },
     {
       "title": "Flow Ratio KPI Gauge Visual",
-      "category": "powerbi",
+      "category": "powerbi,html",
       "tags": [
         "Power BI",
         "DAX",
@@ -201,7 +201,7 @@
     },
     {
       "title": "Real-Time ISS Tracker: Fabric Eventstream & KQL Case Study",
-      "category": "fabric,powerbi,kql,html",
+      "category": "fabric,powerbi,kql,html,python",
       "tags": [
         "Fabric",
         "KQL",
