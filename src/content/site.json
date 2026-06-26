@@ -31,7 +31,7 @@
     {
       "name": "Flow Ratio KPI Gauge Visual",
       "description": "A bespoke HTML/CSS KPI visual within Power BI for real-time backlog health monitoring. Translates the Flow Ratio into an intuitive color-coded gauge with week-over-week trends.",
-      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Power%20BI",
       "skills": [
         "Power BI",
         "DAX",
@@ -168,7 +168,7 @@
         "/about/BubbletoBar.png"
       ],
       "video": "https://youtu.be/rTUxAZ62Hhs",
-      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/BubbleToBar",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/BubbleToBar",
       "size": "large"
     },
     {
@@ -195,7 +195,7 @@
         "/about/work/flowratio-stable.png",
         "/about/work/flowratio-growing.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Power%20BI",
       "size": "large"
     },
     {
@@ -248,7 +248,7 @@
         "/about/work/landingpage-3.png"
       ],
       "video": "https://www.youtube.com/embed/gACAfd8Kuhs",
-      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI%20Landing%20Page",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Power%20BI%20Landing%20Page",
       "size": "large"
     },
     {
