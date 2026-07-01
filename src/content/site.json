@@ -157,7 +157,7 @@
         "HTML"
       ],
       "summary": "The Micro world: A dynamic, physical ruler that shows four wild bee species - from the Tiny Furrow Bee 6mm to the Buff-tailed Bumblebee 22mm - exactly 1:1 on true scale on your screen.",
-      "description": "When people think of \"bee extinction\", they almost always think of the honeybee. But honeybees are basically like farm animals. They are taken care of and fed by beekeepers.\n\n\n\nThe real crisis is happening in silence to our wild bees. The Netherlands has over 350 species of wild bees and bumblebees. They don’t have a beekeeper to look after them, and their numbers have dropped massively since 1950.\n\n\n\nFor a personal Power BI report, I wanted to make this hidden micro-world visible. Every now and then I check in on Kerry Kolosko's work as her creativity is unmatched. Inspired by one of her projects, I built an interactive canvas in Power BI using HTML/SVG where two things come together:\n\n\n\n1. The Macro trend: An area chart showing the decline of our wild bee population since 1950. (Purposely honeybees are not included here!).\n\n\n\n2. The Micro world: A dynamic, physical ruler that shows four wild bee species - from the Tiny Furrow Bee 6mm to the Buff-tailed Bumblebee 22mm - exactly 1:1 on true scale on your screen.\n\n\n\nThe technical challenge was making a ruler in Power BI that reliably measures exactly 22mm on any computer monitor. You have to calculate the user's PPI (Pixels Per Inch) and Windows scaling. With some hardware parameters and quite a bit of SVG, I corrected the inner white space of the vector files. The result? A vector bumblebee that is accurate down to the millimeter on the screen. \n\n",
+      "description": "When people think of \"bee extinction\", they almost always think of the honeybee. But honeybees are basically like farm animals. They are taken care of and fed by beekeepers.\n\nThe real crisis is happening in silence to our wild bees. The Netherlands has over 350 species of wild bees and bumblebees. They don’t have a beekeeper to look after them, and their numbers have dropped massively since 1950.\n\nFor a personal Power BI report, I wanted to make this hidden micro-world visible. Every now and then I check in on Kerry Kolosko's work as her creativity is unmatched. Inspired by one of her projects, I built an interactive canvas in Power BI using HTML/SVG where two things come together:\n\n1. The Macro trend: An area chart showing the decline of our wild bee population since 1950. (Purposely honeybees are not included here!).\n\n2. The Micro world: A dynamic, physical ruler that shows four wild bee species - from the Tiny Furrow Bee 6mm to the Buff-tailed Bumblebee 22mm - exactly 1:1 on true scale on your screen.\n\nThe technical challenge was making a ruler in Power BI that reliably measures exactly 22mm on any computer monitor. You have to calculate the user's PPI (Pixels Per Inch) and Windows scaling. With some hardware parameters and quite a bit of SVG, I corrected the inner white space of the vector files. The result? A vector bumblebee that is accurate down to the millimeter on the screen. ",
       "tools": [
         "Power BI",
         "Fabric",
@@ -167,6 +167,29 @@
       "images": [
         "/about/Bee.png"
       ],
+      "size": "large"
+    },
+    {
+      "title": "Pokémon Analytics",
+      "category": "powerbi,fabric, dataviz,dataanalysis",
+      "tags": [
+        "Power BI",
+        "Fabric",
+        "Data Analysis",
+        "Data Viz"
+      ],
+      "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
+      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
+      "tools": [
+        "Power BI",
+        "Fabric",
+        "HTML"
+      ],
+      "thumbnail": "/about/pokemonheader.png",
+      "images": [
+        "/about/pokemon.png"
+      ],
+      "video": "https://youtu.be/hla77SY1RI8",
       "size": "large"
     },
     {
@@ -192,30 +215,6 @@
       ],
       "video": "https://youtu.be/rTUxAZ62Hhs",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/BubbleToBar",
-      "size": "large"
-    },
-    {
-      "title": "Pokémon Analytics",
-      "category": "powerbi,fabric, dataviz,dataanalysis",
-      "tags": [
-        "Power BI",
-        "Fabric",
-        "Data Analysis",
-        "Data Viz"
-      ],
-      "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
-      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
-      "tools": [
-        "Power BI",
-        "Fabric",
-        "HTML"
-      ],
-      "thumbnail": "/about/pokemonheader.png",
-      "images": [
-        "/about/pokemon.png"
-      ],
-      "video": "https://youtu.be/hla77SY1RI8",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/pokemon-analytics-suite",
       "size": "large"
     },
     {
