@@ -163,11 +163,10 @@
         "Fabric",
         "HTML"
       ],
-      "thumbnail": "/about/Bee.png",
+      "thumbnail": "/about/beeheader.png",
       "images": [
         "/about/Bee.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/wild-bee-crisis",
       "size": "large"
     },
     {
@@ -196,30 +195,27 @@
       "size": "large"
     },
     {
-      "title": "Flow Ratio KPI Gauge Visual",
-      "category": "powerbi,html",
+      "title": "Pokémon Analytics",
+      "category": "powerbi,fabric, dataviz,dataanalysis",
       "tags": [
         "Power BI",
-        "DAX",
-        "HTML"
+        "Fabric",
+        "Data Analysis",
+        "Data Viz"
       ],
-      "summary": "Custom HTML/CSS KPI visual for real-time backlog health monitoring.",
-      "description": "A bespoke HTML/CSS KPI visual within Power BI that provides the Servicedesk Team Manager with an instant, real-time pulse check on incident backlog health.\n\nBy translating the Flow Ratio-the ratio of new incoming incidents compared to resolved ones over a trailing 7-day period-into an intuitive, interactive color-coded gauge, the manager can instantly see if incoming workload and resolution output are in balance without digging into dense data tables.\n\nKey features:\n- Dynamic scale positioning using non-linear mapping across a tri-colored track\n- Instant cognitive processing through dynamic colors, titles, and icons based on thresholds\n- Week-over-week delta badge showing direction and amount of change\n- Integrated documentation panel for seamless end-user onboarding",
+      "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
+      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
       "tools": [
         "Power BI",
-        "DAX",
-        "HTML5",
-        "CSS3",
-        "Topdesk"
+        "Fabric",
+        "HTML"
       ],
-      "thumbnail": "/about/work/flowratio-card.png",
+      "thumbnail": "/about/pokemonheader.png",
       "images": [
-        "/about/work/flowratio-overview.png",
-        "/about/work/flowratio-shrinking.png",
-        "/about/work/flowratio-stable.png",
-        "/about/work/flowratio-growing.png"
+        "/about/pokemon.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/flow-ratio-kpi-gauge",
+      "video": "https://youtu.be/hla77SY1RI8",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/pokemon-analytics-suite",
       "size": "large"
     },
     {
@@ -250,6 +246,33 @@
       ],
       "video": "https://www.youtube.com/watch?v=KBx_4xkWuu8",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/01_realtime-iss-tracker",
+      "size": "large"
+    },
+    {
+      "title": "Flow Ratio KPI Gauge Visual",
+      "category": "powerbi,html",
+      "tags": [
+        "Power BI",
+        "DAX",
+        "HTML"
+      ],
+      "summary": "Custom HTML/CSS KPI visual for real-time backlog health monitoring.",
+      "description": "A bespoke HTML/CSS KPI visual within Power BI that provides the Servicedesk Team Manager with an instant, real-time pulse check on incident backlog health.\n\nBy translating the Flow Ratio-the ratio of new incoming incidents compared to resolved ones over a trailing 7-day period-into an intuitive, interactive color-coded gauge, the manager can instantly see if incoming workload and resolution output are in balance without digging into dense data tables.\n\nKey features:\n- Dynamic scale positioning using non-linear mapping across a tri-colored track\n- Instant cognitive processing through dynamic colors, titles, and icons based on thresholds\n- Week-over-week delta badge showing direction and amount of change\n- Integrated documentation panel for seamless end-user onboarding",
+      "tools": [
+        "Power BI",
+        "DAX",
+        "HTML5",
+        "CSS3",
+        "Topdesk"
+      ],
+      "thumbnail": "/about/work/flowratio-card.png",
+      "images": [
+        "/about/work/flowratio-overview.png",
+        "/about/work/flowratio-shrinking.png",
+        "/about/work/flowratio-stable.png",
+        "/about/work/flowratio-growing.png"
+      ],
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/flow-ratio-kpi-gauge",
       "size": "large"
     },
     {
