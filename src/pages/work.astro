@@ -377,6 +377,29 @@ const accent = siteConfig.accentColor;
         return input;
       };
 
+      const withYouTubeEmbedIdentity = (embedUrl) => {
+        if (!embedUrl) return "";
+
+        try {
+          const url = new URL(embedUrl);
+          const host = url.hostname.replace(/^www\./, "").toLowerCase();
+
+          if (host === "youtube.com" || host === "m.youtube.com" || host === "youtube-nocookie.com") {
+            if (!url.searchParams.has("enablejsapi")) {
+              url.searchParams.set("enablejsapi", "1");
+            }
+
+            if (!url.searchParams.has("origin") && typeof window !== "undefined" && window.location?.origin) {
+              url.searchParams.set("origin", window.location.origin);
+            }
+          }
+
+          return url.toString();
+        } catch {
+          return embedUrl;
+        }
+      };
+
       // Mobile menu toggle
       const menuToggle = document.getElementById('work-menu-toggle');
       const mobileMenu = document.getElementById('work-mobile-menu');
@@ -430,14 +453,20 @@ const accent = siteConfig.accentColor;
 
           // Video embed
           const rawVideo = card.getAttribute('data-video');
-          const video = toEmbeddableVideoUrl(rawVideo);
+          const video = withYouTubeEmbedIdentity(toEmbeddableVideoUrl(rawVideo));
           const gallery = document.getElementById('modal-gallery');
           let galleryHTML = '';
+          let videoLinkHTML = '';
 
           if (video) {
             galleryHTML += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:0.75rem;margin-bottom:0.75rem;">
-              <iframe src="${video}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0.75rem;" allowfullscreen></iframe>
+              <iframe src="${video}" referrerpolicy="origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0.75rem;" allowfullscreen></iframe>
             </div>`;
+
+            videoLinkHTML = `<a href="${rawVideo}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.9rem;font-size:0.85rem;font-weight:600;color:${accent};text-decoration:none;">
+              Open video on YouTube
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>`;
           }
 
           // Gallery images
@@ -449,7 +478,7 @@ const accent = siteConfig.accentColor;
           }
 
           if (galleryHTML) {
-            gallery.innerHTML = galleryHTML;
+            gallery.innerHTML = `${galleryHTML}${videoLinkHTML}`;
           } else {
             gallery.innerHTML = `<div style="height:200px;border-radius:0.75rem;background:linear-gradient(135deg,${accent}22,${accent}55);display:flex;align-items:center;justify-content:center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
