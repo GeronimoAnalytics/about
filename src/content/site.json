@@ -163,10 +163,11 @@
         "Fabric",
         "HTML"
       ],
-      "thumbnail": "/about/beeheader.png",
+      "thumbnail": "/about/Bee.png",
       "images": [
         "/about/Bee.png"
       ],
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio",
       "size": "large"
     },
     {
