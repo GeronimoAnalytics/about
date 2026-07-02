@@ -6,9 +6,8 @@ import keystatic from "@keystatic/astro";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://GeronimoAnalytics.github.io",
-  // Keep GitHub Pages base in production, but use root base locally for Keystatic dev routes.
-  base: process.env.NODE_ENV === "production" ? "/about" : "/",
+  site: "https://geronimoanalytics.nl",
+  base: "/",
   integrations: [react(), ...(process.env.NODE_ENV === "development" ? [keystatic()] : [])],
   vite: {
     plugins: [tailwindcss()],

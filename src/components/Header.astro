@@ -15,7 +15,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     <ul class="hidden md:flex items-center gap-8 mx-auto">
       <li>
         <a
-          href="/about/work/"
+          href="/work/"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
           Home
@@ -23,7 +23,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       </li>
       <li>
         <a
-          href="/about/about/#about"
+          href="/about/#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
           About
@@ -33,7 +33,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasProjects && (
           <li>
             <a
-              href="/about/about/#projects"
+              href="/about/#projects"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Projects
@@ -45,7 +45,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasExperience && (
           <li>
             <a
-              href="/about/about/#experience"
+              href="/about/#experience"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Experience
@@ -57,7 +57,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasEducation && (
           <li>
             <a
-              href="/about/about/#education"
+              href="/about/#education"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Education
@@ -78,11 +78,11 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <!-- Mobile dropdown -->
   <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pb-4">
     <ul class="flex flex-col gap-3 pt-2">
-      <li><a href="/about/work/" class="block py-2 text-gray-700 font-medium">Home</a></li>
-      <li><a href="/about/about/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
-      {hasProjects && <li><a href="/about/about/#projects" class="block py-2 text-gray-700 font-medium">Projects</a></li>}
-      {hasExperience && <li><a href="/about/about/#experience" class="block py-2 text-gray-700 font-medium">Experience</a></li>}
-      {hasEducation && <li><a href="/about/about/#education" class="block py-2 text-gray-700 font-medium">Education</a></li>}
+      <li><a href="/work/" class="block py-2 text-gray-700 font-medium">Home</a></li>
+      <li><a href="/about/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
+      {hasProjects && <li><a href="/about/#projects" class="block py-2 text-gray-700 font-medium">Projects</a></li>}
+      {hasExperience && <li><a href="/about/#experience" class="block py-2 text-gray-700 font-medium">Experience</a></li>}
+      {hasEducation && <li><a href="/about/#education" class="block py-2 text-gray-700 font-medium">Education</a></li>}
     </ul>
   </div>
 </header>

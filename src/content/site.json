@@ -3,7 +3,7 @@
   "title": "Senior Data Analyst and Power BI Developer",
   "description": "Portfolio website of Jeroen - Senior Data Analyst and Power BI Developer",
   "accentColor": "#06B6D4",
-  "agentUrl": "https://GeronimoAnalytics.github.io/about/agents",
+  "agentUrl": "https://geronimoanalytics.nl/agents",
   "social": {
     "email": "data@plan78.com",
     "linkedin": "https://www.linkedin.com/in/jeroen-sparkles-data/",
@@ -163,9 +163,9 @@
         "Fabric",
         "HTML"
       ],
-      "thumbnail": "/about/beeheader.png",
+      "thumbnail": "/beeheader.png",
       "images": [
-        "/about/Bee.png"
+        "/Bee.png"
       ],
       "size": "large"
     },
@@ -185,9 +185,9 @@
         "Fabric",
         "HTML"
       ],
-      "thumbnail": "/about/pokemonheader.png",
+      "thumbnail": "/pokemonheader.png",
       "images": [
-        "/about/pokemon.png"
+        "/pokemon.png"
       ],
       "video": "https://youtu.be/hla77SY1RI8",
       "size": "large"
@@ -209,9 +209,9 @@
         "SVG",
         "SMIL"
       ],
-      "thumbnail": "/about/HeaderBubble.png",
+      "thumbnail": "/HeaderBubble.png",
       "images": [
-        "/about/BubbletoBar.png"
+        "/BubbletoBar.png"
       ],
       "video": "https://youtu.be/rTUxAZ62Hhs",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/BubbleToBar",
@@ -237,11 +237,11 @@
         "Python",
         "KQL"
       ],
-      "thumbnail": "/about/headeriss.png",
+      "thumbnail": "/headeriss.png",
       "images": [
-        "/about/iss-screenshot1.png",
-        "/about/iss-screenshot2.png",
-        "/about/eventstream.png"
+        "/iss-screenshot1.png",
+        "/iss-screenshot2.png",
+        "/eventstream.png"
       ],
       "video": "https://www.youtube.com/watch?v=KBx_4xkWuu8",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/01_realtime-iss-tracker",
@@ -264,12 +264,12 @@
         "CSS3",
         "Topdesk"
       ],
-      "thumbnail": "/about/work/flowratio-card.png",
+      "thumbnail": "/work/flowratio-card.png",
       "images": [
-        "/about/work/flowratio-overview.png",
-        "/about/work/flowratio-shrinking.png",
-        "/about/work/flowratio-stable.png",
-        "/about/work/flowratio-growing.png"
+        "/work/flowratio-overview.png",
+        "/work/flowratio-shrinking.png",
+        "/work/flowratio-stable.png",
+        "/work/flowratio-growing.png"
       ],
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/flow-ratio-kpi-gauge",
       "size": "large"
@@ -290,9 +290,9 @@
         "SciPy",
         "NumPy"
       ],
-      "thumbnail": "/about/work/chocolate-nobel-card.png",
+      "thumbnail": "/work/chocolate-nobel-card.png",
       "images": [
-        "/about/work/chocolate-nobel-card.png"
+        "/work/chocolate-nobel-card.png"
       ],
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/chocolate_vs_nobel",
       "size": "large"
@@ -317,11 +317,11 @@
         "JavaScript",
         "UX Design"
       ],
-      "thumbnail": "/about/work/landingpage-card.png",
+      "thumbnail": "/work/landingpage-card.png",
       "images": [
-        "/about/work/landingpage-1.png",
-        "/about/work/landingpage-2.png",
-        "/about/work/landingpage-3.png"
+        "/work/landingpage-1.png",
+        "/work/landingpage-2.png",
+        "/work/landingpage-3.png"
       ],
       "video": "https://www.youtube.com/embed/gACAfd8Kuhs",
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Power%20BI%20Landing%20Page",
@@ -343,9 +343,9 @@
         "SciPy",
         "NumPy"
       ],
-      "thumbnail": "/about/work/vegas-polar-bears-card.png",
+      "thumbnail": "/work/vegas-polar-bears-card.png",
       "images": [
-        "/about/work/vegas-polar-bears-card.png"
+        "/work/vegas-polar-bears-card.png"
       ],
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/vegas_weddings_vs_polar_bears",
       "size": "large"
@@ -366,9 +366,9 @@
         "SciPy",
         "NumPy"
       ],
-      "thumbnail": "/about/work/divorce-margarine-card.png",
+      "thumbnail": "/work/divorce-margarine-card.png",
       "images": [
-        "/about/work/divorce-margarine-card.png"
+        "/work/divorce-margarine-card.png"
       ],
       "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/divorce_vs_margarine",
       "size": "large"
