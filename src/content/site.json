@@ -32,7 +32,7 @@
     {
       "name": "Flow Ratio KPI Gauge Visual",
       "description": "A bespoke HTML/CSS KPI visual within Power BI for real-time backlog health monitoring. Translates the Flow Ratio into an intuitive color-coded gauge with week-over-week trends.",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/flow-ratio-kpi-gauge",
+      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
       "skills": [
         "Power BI",
         "DAX",
@@ -43,7 +43,7 @@
     {
       "name": "Chocolate Consumption vs. Nobel Prize Winners",
       "description": "Does eating chocolate make a country smarter? Exploring the famous Messerli (2012) spurious correlation (r = 0.88) between chocolate consumption and Nobel Prizes per capita.",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/chocolate_vs_nobel",
+      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
       "skills": [
         "Python",
         "Pandas",
@@ -54,7 +54,7 @@
     {
       "name": "Las Vegas Weddings vs. Polar Bear Activity",
       "description": "Do weddings in Vegas activate polar bears? A monthly analysis showing how seasonal confounding creates a near-perfect (r = 0.95) but completely meaningless correlation.",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/vegas_weddings_vs_polar_bears",
+      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
       "skills": [
         "Python",
         "Pandas",
@@ -214,7 +214,7 @@
         "/BubbletoBar.png"
       ],
       "video": "https://youtu.be/rTUxAZ62Hhs",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/BubbleToBar",
+      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/BubbleToBar",
       "size": "large"
     },
     {
@@ -271,7 +271,7 @@
         "/work/flowratio-stable.png",
         "/work/flowratio-growing.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/flow-ratio-kpi-gauge",
+      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI",
       "size": "large"
     },
     {
@@ -294,7 +294,7 @@
       "images": [
         "/work/chocolate-nobel-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/chocolate_vs_nobel",
+      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/chocolate_vs_nobel",
       "size": "large"
     },
     {
@@ -324,7 +324,7 @@
         "/work/landingpage-3.png"
       ],
       "video": "https://www.youtube.com/embed/gACAfd8Kuhs",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Power%20BI%20Landing%20Page",
+      "link": "https://github.com/GeronimoAnalytics/dataviz/tree/main/Power%20BI%20Landing%20Page",
       "size": "large"
     },
     {
@@ -347,7 +347,7 @@
       "images": [
         "/work/vegas-polar-bears-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/vegas_weddings_vs_polar_bears",
+      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/vegas_weddings_vs_polar_bears",
       "size": "large"
     },
     {
@@ -370,7 +370,7 @@
       "images": [
         "/work/divorce-margarine-card.png"
       ],
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/05_data_analysis/python/divorce_vs_margarine",
+      "link": "https://github.com/GeronimoAnalytics/data_analysis/tree/main/python/divorce_vs_margarine",
       "size": "large"
     }
   ]
