@@ -24,10 +24,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       <li>
         <a
           href="/visuals/"
-          class="transition-colors font-medium"
-          style={`color: ${siteConfig.accentColor};`}
+          class="text-gray-700 hover:text-black transition-colors font-medium"
         >
-          Visual Selector
+          Viz Selector
         </a>
       </li>
       <li>
@@ -88,7 +87,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pb-4">
     <ul class="flex flex-col gap-3 pt-2">
       <li><a href="/work/" class="block py-2 text-gray-700 font-medium">Home</a></li>
-      <li><a href="/visuals/" class="block py-2 font-semibold" style={`color: ${siteConfig.accentColor};`}>Visual Selector</a></li>
+      <li><a href="/visuals/" class="block py-2 text-gray-700 font-medium">Viz Selector</a></li>
       <li><a href="/about/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
       {hasProjects && <li><a href="/about/#projects" class="block py-2 text-gray-700 font-medium">Projects</a></li>}
       {hasExperience && <li><a href="/about/#experience" class="block py-2 text-gray-700 font-medium">Experience</a></li>}
