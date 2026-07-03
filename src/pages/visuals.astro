@@ -100,30 +100,27 @@ const ORDER_TYPES = [
       .pill {
         display: inline-flex;
         align-items: center;
-        padding: 0.35rem 0.875rem;
-        border-radius: 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.3rem 0.9rem;
+        border-radius: 9999px;
+        font-size: 0.78rem;
         font-weight: 600;
         cursor: pointer;
-        border: 1.5px solid #e5e7eb;
-        background: white;
+        border: 1.5px solid transparent;
+        background: #f3f4f6;
         color: #6b7280;
         transition: all 0.18s ease;
         white-space: nowrap;
         letter-spacing: 0.01em;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
       }
       .pill:hover {
-        border-color: #d1d5db;
+        background: var(--accent-15, #e0f7fa);
         color: #111827;
-        background: #f9fafb;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
         transform: translateY(-1px);
       }
       .pill.active {
         color: white;
         border-color: transparent;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px var(--accent-40, rgba(6,182,212,0.35));
         transform: translateY(-1px);
       }
 
@@ -235,7 +232,7 @@ const ORDER_TYPES = [
       .visual-node {
         background: white;
         border: 1px solid #f3f4f6;
-        border-radius: 0.875rem;
+        border-radius: 1.25rem;
         padding: 0.875rem 0.75rem 0.75rem;
         cursor: pointer;
         text-align: center;
@@ -258,7 +255,7 @@ const ORDER_TYPES = [
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 0.5rem;
+        border-radius: 0.875rem;
         overflow: hidden;
         flex-shrink: 0;
       }
@@ -365,7 +362,7 @@ const ORDER_TYPES = [
       .modal-grid section p { font-size: 0.875rem; color: #4b5563; line-height: 1.65; }
     </style>
   </head>
-  <body style="overflow-x: hidden;">
+  <body style={`overflow-x: hidden; --accent-40: ${accent}66; --accent-15: ${accent}26;`}>
 
     <!-- Header -->
     <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f3f4f6;">
@@ -397,7 +394,7 @@ const ORDER_TYPES = [
     </header>
 
     <!-- Hero -->
-    <div class="hero-bg" style={`--accent-40: ${accent}66; --accent-25: ${accent}40; --accent-10: ${accent}1a; padding: 3.5rem 1.5rem 2.5rem;`}>
+    <div class="hero-bg" style={`--accent-40: ${accent}66; --accent-25: ${accent}40; --accent-15: ${accent}26; --accent-10: ${accent}1a; padding: 3.5rem 1.5rem 2.5rem;`}>
       <div class="grid-pattern"></div>
       <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
         <p style={`font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: ${accent}; margin-bottom: 0.6rem;`}>Power BI</p>
