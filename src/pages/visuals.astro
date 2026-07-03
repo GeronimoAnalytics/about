@@ -1,0 +1,619 @@
+---
+import { siteConfig } from "../config";
+
+const accent = siteConfig.accentColor;
+
+// Fetch catalog data from the source repo at build time
+let catalogData: { visuals: any[]; tooltips: Record<string, any> } = { visuals: [], tooltips: {} };
+try {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/GeronimoAnalytics/visualselector/main/web/visuals-data.js"
+  );
+  const text = await res.text();
+  const startIdx = text.indexOf("{");
+  const endIdx = text.lastIndexOf("}");
+  if (startIdx !== -1 && endIdx !== -1) {
+    catalogData = JSON.parse(text.slice(startIdx, endIdx + 1));
+  }
+} catch (e) {
+  console.error("Failed to load visual catalog data:", e);
+}
+
+const GOALS = [
+  ["all", "All"],
+  ["comparison", "Comparison"],
+  ["time-series", "Time Series"],
+  ["part-to-whole", "Part-to-Whole"],
+  ["relationship", "Relationship"],
+  ["map", "Map"],
+  ["flow", "Flow / Process"],
+  ["kpi", "KPI"],
+  ["detail", "Detail"],
+];
+
+const DATA_TYPES = [
+  ["all", "All"],
+  ["numeric", "Numeric"],
+  ["categoric", "Categoric"],
+  ["both", "Categoric + Numeric"],
+];
+
+const ORDER_TYPES = [
+  ["all", "All"],
+  ["ordered", "Ordered"],
+  ["unordered", "Unordered"],
+  ["both", "Both"],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Power BI Visual Selector — find the right visual for your analysis goal and data type."
+    />
+    <title>Visual Selector — {siteConfig.name}</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Arial, sans-serif;
+        background: white;
+        color: #1f2937;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      @media (max-width: 768px) {
+        #desktop-nav { display: none !important; }
+        #vis-menu-toggle { display: block !important; }
+      }
+
+      .hero-bg {
+        position: relative;
+        overflow: hidden;
+        background: white;
+      }
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 800px 600px at 0% 0%, var(--accent-40) 0%, var(--accent-25) 20%, var(--accent-10) 40%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.8) 90%, white 100%);
+        z-index: 0;
+      }
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(200,200,200,0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(200,200,200,0.3) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse at top right, white 0%, transparent 70%);
+        z-index: 0;
+      }
+      .hero-content { position: relative; z-index: 1; }
+
+      /* Filter pills */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        color: #374151;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .pill:hover { background: #f3f4f6; border-color: #d1d5db; }
+      .pill.active { color: white; border-color: transparent; }
+
+      /* Layout */
+      .selector-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 5rem;
+      }
+      @media (max-width: 900px) {
+        .selector-layout { grid-template-columns: 1fr; }
+      }
+
+      /* Controls panel */
+      .controls-panel {
+        background: white;
+        border: 1px solid #f3f4f6;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        align-self: start;
+        position: sticky;
+        top: 72px;
+      }
+      .controls-panel h2 {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9ca3af;
+        margin-bottom: 0.75rem;
+        margin-top: 1.25rem;
+      }
+      .controls-panel h2:first-child { margin-top: 0; }
+
+      .choice-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .hint {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 0.5rem;
+        line-height: 1.5;
+      }
+
+      /* Tooltip */
+      .has-tooltip { position: relative; }
+      .tooltip {
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1f2937;
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-size: 0.75rem;
+        min-width: 200px;
+        max-width: 260px;
+        z-index: 20;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+      .tooltip-title { font-weight: 700; margin-bottom: 0.25rem; }
+      .tooltip-description { color: #d1d5db; margin-bottom: 0.4rem; }
+      .tooltip-list { padding-left: 1rem; color: #d1d5db; }
+      .tooltip-list li { margin-bottom: 0.15rem; }
+
+      /* Results area */
+      .results-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .results-header h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
+      }
+      .count-pill {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.65rem;
+        border-radius: 9999px;
+        color: white;
+      }
+
+      /* Visual grid */
+      .visual-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+      @media (max-width: 600px) {
+        .visual-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      }
+
+      /* Visual node card */
+      .visual-node {
+        background: white;
+        border: 1px solid #f3f4f6;
+        border-radius: 0.875rem;
+        padding: 0.875rem 0.75rem 0.75rem;
+        cursor: pointer;
+        text-align: center;
+        transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: inherit;
+        width: 100%;
+      }
+      .visual-node:hover {
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+        border-color: #e5e7eb;
+      }
+      .visual-icon {
+        width: 64px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .visual-icon svg, .visual-icon img { width: 100%; height: 100%; }
+      .visual-icon-image { object-fit: contain; }
+      .icon-placeholder { font-size: 0.65rem; color: #9ca3af; }
+      .visual-name {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: #111827;
+        line-height: 1.3;
+      }
+      .visual-meta {
+        font-size: 0.65rem;
+        color: #9ca3af;
+        line-height: 1.3;
+      }
+      .visual-node.hidden { display: none; }
+
+      /* Empty state */
+      #empty-state {
+        display: none;
+        padding: 4rem 0;
+        text-align: center;
+        color: #9ca3af;
+        font-size: 0.95rem;
+        grid-column: 1 / -1;
+      }
+
+      /* Modal */
+      dialog.modal {
+        border: none;
+        border-radius: 1.25rem;
+        max-width: 820px;
+        width: min(96vw, 820px);
+        max-height: 90vh;
+        overflow: hidden;
+        box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+        padding: 0;
+      }
+      dialog.modal::backdrop {
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(4px);
+      }
+      .modal-inner {
+        overflow-y: auto;
+        max-height: 90vh;
+        padding: 2rem 2rem 2.5rem;
+      }
+      .modal-inner::-webkit-scrollbar { width: 6px; }
+      .modal-inner::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+      .modal-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .modal-icon-large {
+        width: 72px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+      .modal-icon-large svg, .modal-icon-large img { width: 100%; height: 100%; }
+      .modal-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+      }
+      .modal-close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #9ca3af;
+        padding: 0.25rem;
+        flex-shrink: 0;
+        line-height: 1;
+        font-size: 1.25rem;
+      }
+      .modal-close-btn:hover { color: #374151; }
+      #modalCategory { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 0.2rem; }
+      #modalTitle { font-size: 1.35rem; font-weight: 800; color: #111827; line-height: 1.25; }
+      #modalComplexity { font-size: 0.8rem; color: #6b7280; margin-top: 0.2rem; }
+
+      .modal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+      }
+      @media (max-width: 600px) {
+        .modal-grid { grid-template-columns: 1fr; }
+      }
+      .modal-grid section h4 {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9ca3af;
+        margin-bottom: 0.4rem;
+      }
+      .modal-grid section p { font-size: 0.875rem; color: #4b5563; line-height: 1.65; }
+    </style>
+  </head>
+  <body style="overflow-x: hidden;">
+
+    <!-- Header -->
+    <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f3f4f6;">
+      <nav style="max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: center;">
+        <ul id="desktop-nav" style="display: flex; align-items: center; gap: 2rem; list-style: none;">
+          <li><a href="/work/" style="color: #374151; text-decoration: none; font-weight: 500;">Home</a></li>
+          <li><a href="/visuals/" style={`text-decoration: none; font-weight: 600; color: ${accent};`}>Visual Selector</a></li>
+          <li><a href="/about/" style="color: #374151; text-decoration: none; font-weight: 500;">About</a></li>
+          <li><a href="/about/#projects" style="color: #374151; text-decoration: none; font-weight: 500;">Projects</a></li>
+          <li><a href="/about/#experience" style="color: #374151; text-decoration: none; font-weight: 500;">Experience</a></li>
+          <li><a href="/about/#education" style="color: #374151; text-decoration: none; font-weight: 500;">Education</a></li>
+        </ul>
+        <button id="vis-menu-toggle" style="display: none; margin-left: auto; padding: 0.5rem; background: none; border: none; cursor: pointer; color: #374151;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </nav>
+      <div id="vis-mobile-menu" style="display: none; background: rgba(255,255,255,0.97); border-top: 1px solid #f3f4f6; padding: 0.5rem 1.5rem 1rem;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.25rem;">
+          <li><a href="/work/" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Home</a></li>
+          <li><a href="/visuals/" style={`display: block; padding: 0.5rem 0; text-decoration: none; font-weight: 600; color: ${accent};`}>Visual Selector</a></li>
+          <li><a href="/about/" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">About</a></li>
+          <li><a href="/about/#projects" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Projects</a></li>
+          <li><a href="/about/#experience" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Experience</a></li>
+          <li><a href="/about/#education" style="display: block; padding: 0.5rem 0; color: #374151; text-decoration: none; font-weight: 500;">Education</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero-bg" style={`--accent-40: ${accent}66; --accent-25: ${accent}40; --accent-10: ${accent}1a; padding: 3.5rem 1.5rem 2.5rem;`}>
+      <div class="grid-pattern"></div>
+      <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
+        <p style={`font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: ${accent}; margin-bottom: 0.6rem;`}>Power BI</p>
+        <h1 style="font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 1rem;">
+          Visual <span style={`color: ${accent}`}>Selector</span>
+        </h1>
+        <p style="font-size: 1.05rem; color: #6b7280; max-width: 520px; line-height: 1.7;">
+          Use the filters to quickly find the right Power BI visual based on your analysis goal and data type.
+        </p>
+      </div>
+    </div>
+
+    <!-- Selector -->
+    <div class="selector-layout">
+
+      <!-- Controls -->
+      <aside class="controls-panel">
+        <h2>1. Analysis goal</h2>
+        <div class="choice-row" id="goalOptions"></div>
+
+        <h2>2. Data type</h2>
+        <div class="choice-row" id="dataTypeOptions"></div>
+
+        <h2>3. Data structure</h2>
+        <div class="choice-row" id="orderOptions"></div>
+
+        <p class="hint">Tip: hover over Ordered / Unordered to see example data.</p>
+      </aside>
+
+      <!-- Results -->
+      <div>
+        <div class="results-header">
+          <h2>Filtered results</h2>
+          <span id="resultCount" class="count-pill" style={`background: ${accent};`}>0 visuals</span>
+        </div>
+        <div class="visual-grid" id="visualGrid"></div>
+        <div id="empty-state">No match for this selection. Try setting Data Type = All or Data Structure = Both.</div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <dialog id="visualModal" class="modal">
+      <div class="modal-inner">
+        <div class="modal-top">
+          <div class="modal-icon-large" id="modalIcon"></div>
+          <div class="modal-header-row">
+            <div>
+              <p id="modalCategory"></p>
+              <h3 id="modalTitle"></h3>
+              <p id="modalComplexity"></p>
+            </div>
+            <button id="closeModal" class="modal-close-btn" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="modal-grid">
+          <section>
+            <h4>What is it?</h4>
+            <p id="modalWhat"></p>
+          </section>
+          <section>
+            <h4>When to use?</h4>
+            <p id="modalUse"></p>
+          </section>
+          <section>
+            <h4>When not to use?</h4>
+            <p id="modalNot"></p>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="tooltipTemplate">
+      <div class="tooltip">
+        <p class="tooltip-title"></p>
+        <p class="tooltip-description"></p>
+        <ul class="tooltip-list"></ul>
+      </div>
+    </template>
+
+    <script is:inline define:vars={{ catalogData, GOALS, DATA_TYPES, ORDER_TYPES, accent }}>
+      // Mobile menu
+      const menuToggle = document.getElementById("vis-menu-toggle");
+      const mobileMenu = document.getElementById("vis-mobile-menu");
+      menuToggle?.addEventListener("click", () => {
+        mobileMenu.style.display = mobileMenu.style.display === "none" ? "block" : "none";
+      });
+      mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => { mobileMenu.style.display = "none"; });
+      });
+
+      const state = { filters: { goal: "all", dataType: "all", orderType: "all" } };
+      const visuals = catalogData.visuals || [];
+      const tips = catalogData.tooltips || {};
+
+      const goalOptionsEl = document.getElementById("goalOptions");
+      const dataTypeOptionsEl = document.getElementById("dataTypeOptions");
+      const orderOptionsEl = document.getElementById("orderOptions");
+      const visualGrid = document.getElementById("visualGrid");
+      const resultCount = document.getElementById("resultCount");
+      const emptyState = document.getElementById("empty-state");
+
+      const modal = document.getElementById("visualModal");
+      const closeModal = document.getElementById("closeModal");
+      const modalIcon = document.getElementById("modalIcon");
+      const modalCategory = document.getElementById("modalCategory");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalComplexity = document.getElementById("modalComplexity");
+      const modalWhat = document.getElementById("modalWhat");
+      const modalUse = document.getElementById("modalUse");
+      const modalNot = document.getElementById("modalNot");
+      const tooltipTemplate = document.getElementById("tooltipTemplate");
+
+      function renderChoices(container, options, key, includeTooltips = false) {
+        container.innerHTML = "";
+        options.forEach(([value, label]) => {
+          const btn = document.createElement("button");
+          btn.className = "pill" + (state.filters[key] === value ? " active" : "");
+          btn.type = "button";
+          btn.textContent = label;
+          if (state.filters[key] === value) {
+            btn.style.background = accent;
+          }
+          if (includeTooltips && tips[value]) {
+            btn.classList.add("has-tooltip");
+            btn.addEventListener("mouseenter", () => showTooltip(btn, tips[value]));
+            btn.addEventListener("mouseleave", () => hideTooltip(btn));
+            btn.addEventListener("focus", () => showTooltip(btn, tips[value]));
+            btn.addEventListener("blur", () => hideTooltip(btn));
+          }
+          btn.addEventListener("click", () => {
+            state.filters[key] = value;
+            refresh();
+          });
+          container.appendChild(btn);
+        });
+      }
+
+      function showTooltip(target, data) {
+        if (!tooltipTemplate || target.querySelector(".tooltip")) return;
+        const node = tooltipTemplate.content.firstElementChild.cloneNode(true);
+        node.querySelector(".tooltip-title").textContent = data.title || "";
+        node.querySelector(".tooltip-description").textContent = data.description || "";
+        const list = node.querySelector(".tooltip-list");
+        (data.examples || []).forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          list.appendChild(li);
+        });
+        target.appendChild(node);
+      }
+
+      function hideTooltip(target) {
+        target.querySelector(".tooltip")?.remove();
+      }
+
+      function matchesFilters(visual) {
+        const goalMatch = state.filters.goal === "all" || visual.goal === state.filters.goal;
+        const dataTypeMatch =
+          state.filters.dataType === "all" ||
+          visual.dataType === state.filters.dataType ||
+          visual.dataType === "both";
+        const orderMatch =
+          state.filters.orderType === "all" ||
+          visual.orderType === state.filters.orderType ||
+          visual.orderType === "both";
+        return goalMatch && dataTypeMatch && orderMatch;
+      }
+
+      function buildIconMarkup(visual) {
+        if (visual.svgIcon) return visual.svgIcon;
+        if (visual.iconPath) {
+          const alt = (visual.name || "Visual").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          return `<img class="visual-icon-image" src="${visual.iconPath}" alt="${alt}" loading="lazy">`;
+        }
+        return '<span class="icon-placeholder">—</span>';
+      }
+
+      function renderGrid() {
+        const filtered = visuals.filter(matchesFilters);
+        resultCount.textContent = `${filtered.length} visual${filtered.length !== 1 ? "s" : ""}`;
+        visualGrid.innerHTML = "";
+        if (!filtered.length) {
+          emptyState.style.display = "block";
+          return;
+        }
+        emptyState.style.display = "none";
+        filtered.forEach((visual) => {
+          const btn = document.createElement("button");
+          btn.className = "visual-node";
+          btn.type = "button";
+          btn.innerHTML = `
+            <div class="visual-icon">${buildIconMarkup(visual)}</div>
+            <div class="visual-name">${visual.name}</div>
+            <div class="visual-meta">${visual.category || ""}</div>
+          `;
+          btn.addEventListener("click", () => openModal(visual));
+          visualGrid.appendChild(btn);
+        });
+      }
+
+      function refresh() {
+        renderChoices(goalOptionsEl, GOALS, "goal");
+        renderChoices(dataTypeOptionsEl, DATA_TYPES, "dataType", true);
+        renderChoices(orderOptionsEl, ORDER_TYPES, "orderType", true);
+        renderGrid();
+      }
+
+      function openModal(visual) {
+        modalIcon.innerHTML = buildIconMarkup(visual);
+        modalCategory.textContent = visual.category || "";
+        modalTitle.textContent = visual.name || "";
+        modalComplexity.textContent = visual.complexity ? `Complexity: ${visual.complexity}` : "";
+        modalWhat.textContent = visual.whatIsIt || "—";
+        modalUse.textContent = visual.whenToUse || "—";
+        modalNot.textContent = visual.whenNotToUse || "—";
+        modal.showModal();
+      }
+
+      closeModal?.addEventListener("click", () => modal.close());
+      modal?.addEventListener("click", (e) => {
+        const rect = modal.getBoundingClientRect();
+        const inside =
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width;
+        if (!inside) modal.close();
+      });
+
+      // Init
+      refresh();
+    </script>
+  </body>
+</html>
