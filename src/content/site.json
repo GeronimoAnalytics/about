@@ -167,6 +167,7 @@
       "images": [
         "/Bee.png"
       ],
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/wild-bee-crisis",
       "size": "large"
     },
     {
@@ -190,6 +191,7 @@
         "/pokemon.png"
       ],
       "video": "https://youtu.be/hla77SY1RI8",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/pokemon-analytics-suite",
       "size": "large"
     },
     {
