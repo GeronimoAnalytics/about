@@ -9,6 +9,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 <header
   id="header"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  data-accent={siteConfig.accentColor}
 >
   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Desktop menu -->
@@ -26,7 +27,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           href="/visuals/"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
-          Viz Selector
+          PBI Viz Chckr
         </a>
       </li>
       <li>
@@ -34,7 +35,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           href="/customvisuals/"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
-          Custom Visuals
+          PBI Custom Viz Chckr
         </a>
       </li>
       <li>
@@ -95,8 +96,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pb-4">
     <ul class="flex flex-col gap-3 pt-2">
       <li><a href="/work/" class="block py-2 text-gray-700 font-medium">Home</a></li>
-      <li><a href="/visuals/" class="block py-2 text-gray-700 font-medium">Viz Selector</a></li>
-      <li><a href="/customvisuals/" class="block py-2 text-gray-700 font-medium">Custom Visuals</a></li>
+      <li><a href="/visuals/" class="block py-2 text-gray-700 font-medium">PBI Viz Chckr</a></li>
+      <li><a href="/customvisuals/" class="block py-2 text-gray-700 font-medium">PBI Custom Viz Chckr</a></li>
       <li><a href="/about/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
       {hasProjects && <li><a href="/about/#projects" class="block py-2 text-gray-700 font-medium">Projects</a></li>}
       {hasExperience && <li><a href="/about/#experience" class="block py-2 text-gray-700 font-medium">Experience</a></li>}
@@ -106,6 +107,17 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 </header>
 
 <script>
+  // Active nav link
+  const accentColor = document.getElementById('header').dataset.accent || '#06B6D4';
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('#desktop-nav a, #mobile-menu a').forEach(a => {
+    const href = a.getAttribute('href')?.split('#')[0].replace(/\/$/, '') || '';
+    if (href && path === href) {
+      a.style.color = accentColor;
+      a.style.fontWeight = '700';
+    }
+  });
+
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
