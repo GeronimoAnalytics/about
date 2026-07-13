@@ -2,6 +2,13 @@
 import { siteConfig } from "../config";
 
 const featuredItems = (siteConfig.featuredWork ?? []).slice(0, 4);
+const toSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 ---
 
 <section id="featured-work" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -27,11 +34,9 @@ const featuredItems = (siteConfig.featuredWork ?? []).slice(0, 4);
               <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
                 {item.summary}
               </p>
-              {item.link && (
+              {item.title && (
                 <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/work/?project=${toSlug(item.title)}`}
                   class="inline-flex items-center gap-2 text-sm font-semibold"
                   style={`color: ${siteConfig.accentColor}`}
                 >

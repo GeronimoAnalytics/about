@@ -68,6 +68,13 @@ const defaultWorks = [
 const works = siteConfig.featuredWork ?? [];
 
 const accent = siteConfig.accentColor;
+const toSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 ---
 
 <html lang="en">
@@ -283,6 +290,7 @@ const accent = siteConfig.accentColor;
             class="card"
             data-category={work.category}
             data-title={work.title}
+            data-slug={toSlug(work.title)}
             data-description={work.description}
             data-tools={JSON.stringify(work.tools)}
             data-link={work.link}
@@ -447,58 +455,101 @@ const accent = siteConfig.accentColor;
       // Modal logic
       const modal = document.getElementById('modal');
       const modalClose = document.getElementById('modal-close');
+      const slugify = (value) =>
+        (value || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+      const setProjectQuery = (slug) => {
+        const url = new URL(window.location.href);
+        if (slug) {
+          url.searchParams.set('project', slug);
+        } else {
+          url.searchParams.delete('project');
+        }
+        window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+      };
+
+      const openModalForCard = (card, updateQuery = true) => {
+        if (!card) return;
+
+        const slug = card.getAttribute('data-slug') || slugify(card.getAttribute('data-title'));
+        if (updateQuery) {
+          setProjectQuery(slug);
+        }
+
+        document.getElementById('modal-title').textContent = card.getAttribute('data-title');
+        document.getElementById('modal-description').textContent = card.getAttribute('data-description');
+        document.getElementById('modal-link').href = card.getAttribute('data-link');
+
+        // Video embed
+        const rawVideo = card.getAttribute('data-video');
+        const video = withYouTubeEmbedIdentity(toEmbeddableVideoUrl(rawVideo));
+        const gallery = document.getElementById('modal-gallery');
+        let galleryHTML = '';
+        let videoLinkHTML = '';
+
+        if (video) {
+          galleryHTML += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:0.75rem;margin-bottom:0.75rem;">
+            <iframe src="${video}" referrerpolicy="origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0.75rem;" allowfullscreen></iframe>
+          </div>`;
+
+          videoLinkHTML = `<a href="${rawVideo}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.9rem;font-size:0.85rem;font-weight:600;color:${accent};text-decoration:none;">
+            Open video on YouTube
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>`;
+        }
+
+        // Gallery images
+        const images = JSON.parse(card.getAttribute('data-images') || '[]');
+        if (images.length > 0) {
+          galleryHTML += images.map(src =>
+            `<img src="${src}" alt="" style="width:100%;border-radius:0.75rem;margin-bottom:0.75rem;display:block;" />`
+          ).join('');
+        }
+
+        if (galleryHTML) {
+          gallery.innerHTML = `${galleryHTML}${videoLinkHTML}`;
+        } else {
+          gallery.innerHTML = `<div style="height:200px;border-radius:0.75rem;background:linear-gradient(135deg,${accent}22,${accent}55);display:flex;align-items:center;justify-content:center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>`;
+        }
+
+        // Tools
+        const tools = JSON.parse(card.getAttribute('data-tools') || '[]');
+        document.getElementById('modal-tools').innerHTML = tools.map(t =>
+          `<span style="background:#1a3a5c;color:white;padding:0.25rem 0.75rem;border-radius:0.375rem;font-size:0.8rem;font-weight:500;">${t}</span>`
+        ).join('');
+
+        modal.classList.add('open');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('open');
+        setProjectQuery('');
+      };
 
       cards.forEach(card => {
-        card.addEventListener('click', () => {
-          document.getElementById('modal-title').textContent = card.getAttribute('data-title');
-          document.getElementById('modal-description').textContent = card.getAttribute('data-description');
-          document.getElementById('modal-link').href = card.getAttribute('data-link');
-
-          // Video embed
-          const rawVideo = card.getAttribute('data-video');
-          const video = withYouTubeEmbedIdentity(toEmbeddableVideoUrl(rawVideo));
-          const gallery = document.getElementById('modal-gallery');
-          let galleryHTML = '';
-          let videoLinkHTML = '';
-
-          if (video) {
-            galleryHTML += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:0.75rem;margin-bottom:0.75rem;">
-              <iframe src="${video}" referrerpolicy="origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0.75rem;" allowfullscreen></iframe>
-            </div>`;
-
-            videoLinkHTML = `<a href="${rawVideo}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.9rem;font-size:0.85rem;font-weight:600;color:${accent};text-decoration:none;">
-              Open video on YouTube
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>`;
-          }
-
-          // Gallery images
-          const images = JSON.parse(card.getAttribute('data-images') || '[]');
-          if (images.length > 0) {
-            galleryHTML += images.map(src =>
-              `<img src="${src}" alt="" style="width:100%;border-radius:0.75rem;margin-bottom:0.75rem;display:block;" />`
-            ).join('');
-          }
-
-          if (galleryHTML) {
-            gallery.innerHTML = `${galleryHTML}${videoLinkHTML}`;
-          } else {
-            gallery.innerHTML = `<div style="height:200px;border-radius:0.75rem;background:linear-gradient(135deg,${accent}22,${accent}55);display:flex;align-items:center;justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>`;
-          }
-
-          // Tools
-          const tools = JSON.parse(card.getAttribute('data-tools') || '[]');
-          document.getElementById('modal-tools').innerHTML = tools.map(t =>
-            `<span style="background:#1a3a5c;color:white;padding:0.25rem 0.75rem;border-radius:0.375rem;font-size:0.8rem;font-weight:500;">${t}</span>`
-          ).join('');
-          modal.classList.add('open');
-        });
+        card.addEventListener('click', () => openModalForCard(card));
       });
 
-      modalClose.addEventListener('click', () => modal.classList.remove('open'));
-      modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+      // Open project modal directly from URL: /work/?project=<slug>
+      const requestedProject = new URLSearchParams(window.location.search).get('project');
+      if (requestedProject) {
+        const targetCard = Array.from(cards).find(
+          (card) => card.getAttribute('data-slug') === requestedProject
+        );
+        if (targetCard) {
+          openModalForCard(targetCard, false);
+        }
+      }
     </script>
   </body>
 </html>

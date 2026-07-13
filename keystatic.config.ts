@@ -31,6 +31,20 @@ export default config({
           label: "Skills",
           itemLabel: (props) => props.value || "Skill",
         }),
+        servicesHeading: fields.text({ label: "Services Heading" }),
+        services: fields.array(
+          fields.object(
+            {
+              title: fields.text({ label: "Service Title" }),
+              description: fields.text({ label: "Service Description", multiline: true }),
+            },
+            { label: "Service" }
+          ),
+          {
+            label: "Services",
+            itemLabel: (props) => props.fields.title.value || "Service",
+          }
+        ),
         projects: fields.array(
           fields.object(
             {
