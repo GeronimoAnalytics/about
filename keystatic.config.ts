@@ -110,6 +110,7 @@ export default config({
               }),
               summary: fields.text({ label: "Summary", multiline: true }),
               description: fields.text({ label: "Description", multiline: true }),
+              showOnHomepage: fields.checkbox({ label: "Show on Homepage", defaultValue: false }),
               tools: fields.array(fields.text({ label: "Tool" }), {
                 label: "Tools",
                 itemLabel: (props) => props.value || "Tool",

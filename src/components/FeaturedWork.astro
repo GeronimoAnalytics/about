@@ -1,7 +1,11 @@
 ---
 import { siteConfig } from "../config";
 
-const featuredItems = (siteConfig.featuredWork ?? []).slice(0, 4);
+const allFeaturedItems = siteConfig.featuredWork ?? [];
+const homepageFeaturedItems = allFeaturedItems.filter(
+  (item) => (item as { showOnHomepage?: boolean }).showOnHomepage
+);
+const featuredItems = (homepageFeaturedItems.length > 0 ? homepageFeaturedItems : allFeaturedItems).slice(0, 4);
 const toSlug = (value: string) =>
   value
     .toLowerCase()
