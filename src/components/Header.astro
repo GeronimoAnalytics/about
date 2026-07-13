@@ -1,9 +1,5 @@
 ---
 import { siteConfig } from "../config";
-
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
 <header
@@ -13,10 +9,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 >
   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Desktop menu -->
-    <ul class="hidden md:flex items-center gap-8 mx-auto">
+    <ul id="desktop-nav" class="hidden md:flex items-center gap-8 mx-auto">
       <li>
         <a
-          href="/work/"
+          href="/#hero"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
           Home
@@ -24,48 +20,44 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       </li>
       <li>
         <a
-          href="/about/#about"
+          href="/#featured-work"
+          class="text-gray-700 hover:text-black transition-colors font-medium"
+        >
+          Featured work
+        </a>
+      </li>
+      <li>
+        <a
+          href="/#services"
+          class="text-gray-700 hover:text-black transition-colors font-medium"
+        >
+          Services
+        </a>
+      </li>
+      <li>
+        <a
+          href="/#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
           About
         </a>
       </li>
-      {
-        hasProjects && (
-          <li>
-            <a
-              href="/about/#projects"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Projects
-            </a>
-          </li>
-        )
-      }
-      {
-        hasExperience && (
-          <li>
-            <a
-              href="/about/#experience"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Experience
-            </a>
-          </li>
-        )
-      }
-      {
-        hasEducation && (
-          <li>
-            <a
-              href="/about/#education"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Education
-            </a>
-          </li>
-        )
-      }
+      <li>
+        <a
+          href="/#contact"
+          class="text-gray-700 hover:text-black transition-colors font-medium"
+        >
+          Contact
+        </a>
+      </li>
+      <li>
+        <a
+          href="/work/"
+          class="text-gray-700 hover:text-black transition-colors font-medium"
+        >
+          Portfolio
+        </a>
+      </li>
     </ul>
 
     <!-- Mobile hamburger -->
@@ -79,11 +71,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <!-- Mobile dropdown -->
   <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pb-4">
     <ul class="flex flex-col gap-3 pt-2">
-      <li><a href="/work/" class="block py-2 text-gray-700 font-medium">Home</a></li>
-      <li><a href="/about/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
-      {hasProjects && <li><a href="/about/#projects" class="block py-2 text-gray-700 font-medium">Projects</a></li>}
-      {hasExperience && <li><a href="/about/#experience" class="block py-2 text-gray-700 font-medium">Experience</a></li>}
-      {hasEducation && <li><a href="/about/#education" class="block py-2 text-gray-700 font-medium">Education</a></li>}
+      <li><a href="/#hero" class="block py-2 text-gray-700 font-medium">Home</a></li>
+      <li><a href="/#featured-work" class="block py-2 text-gray-700 font-medium">Featured work</a></li>
+      <li><a href="/#services" class="block py-2 text-gray-700 font-medium">Services</a></li>
+      <li><a href="/#about" class="block py-2 text-gray-700 font-medium">About</a></li>
+      <li><a href="/#contact" class="block py-2 text-gray-700 font-medium">Contact</a></li>
+      <li><a href="/work/" class="block py-2 text-gray-700 font-medium">Portfolio</a></li>
     </ul>
   </div>
 </header>
