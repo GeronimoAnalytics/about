@@ -176,6 +176,33 @@
   ],
   "featuredWork": [
     {
+      "title": "Data Portrait: World Cup Final 2026 - Spain vs Argentina",
+      "category": "python,dataviz,html,dataanalysis",
+      "tags": [
+        "Python",
+        "Data Viz",
+        "HTML",
+        "Canvas"
+      ],
+      "summary": "Interactive radial timeline capturing the tension and momentum shifts of the 2026 World Cup Final through an animated heartbeat visualization.",
+      "description": "An interactive data visualization transforming 121 minutes of the 2026 FIFA World Cup Final into a living, breathing data portrait. Instead of static tables, this project tells the story of Spain vs Argentina through an animated radial timeline that beats like a heart.\n\nThe Concept:\nFootball matches are battles of momentum and pressure. This visualization captures minute-by-minute match events (shots, passes, interceptions, xG) and transforms them into a pulsing radial timeline where you can literally see which team controlled the game at every moment.\n\nHow It Works:\n\n• The Radial Timeline: Time moves clockwise like a clock, starting at 12 o'clock. Spain dominates the top half (red), Argentina the bottom half (blue).\n\n• The Heartbeat Effect: Both sides pulse with momentum. The brighter the aura, the more momentum; the faster the heartbeat, the more aggressive the attacking threat.\n\n• The Pressure Visualization: When Spain pushes forward, the red aura expands and visibly pushes the blue side backward toward center—a physical representation of tactical pressure.\n\n• Key Turning Points: Enzo Fernández's red card (92') and Ferran Torres' golden goal (105') are locked as physical anchors—moments when the entire match trajectory shifted.\n\nThe Technical Stack:\n\n• Data Pipeline: Python transforms minute-by-minute match events into a momentum index. Rolling averages smooth the data for fluid curves.\n\n• Frontend: HTML5 Canvas delivers high-performance rendering. CSS animations drive the heartbeat effect.\n\n• Data Source: Official shots, pass completion, interceptions, and Expected Goals (xG) across all 121 minutes.\n\nKey Insight:\nThe visualization clearly shows that Spain didn't leave Argentina a real chance. The consistency of red momentum dominance throughout the match—particularly the compressed blue aura—tells the story of one team's complete control.",
+      "tools": [
+        "Python",
+        "HTML5",
+        "Canvas",
+        "CSS3",
+        "Data Visualization"
+      ],
+      "thumbnail": "/match_header.png",
+      "images": [
+        "/match_header.png",
+        "/match_esparg.gif",
+        "/match_veld.png"
+      ],
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/Match-World-Cup-2026",
+      "size": "large"
+    },
+    {
       "title": "Olist E-Commerce Analytics Dashboard",
       "category": "powerbi,fabric,dataviz",
       "tags": [
