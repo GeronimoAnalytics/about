@@ -176,7 +176,7 @@
   ],
   "featuredWork": [
     {
-      "title": "Data Portrait: World Cup Final 2026 - Spain vs Argentina",
+      "title": "Momentum Analysis: World Cup Final 2026 - Spain vs Argentina",
       "category": "python,dataviz,html,dataanalysis",
       "tags": [
         "Python",
@@ -253,27 +253,33 @@
       "size": "large"
     },
     {
-      "title": "Pokémon Analytics",
-      "category": "powerbi,fabric, dataviz,dataanalysis",
+      "title": "Real-Time ISS Tracker: Fabric Eventstream & KQL Case Study",
+      "category": "fabric,powerbi,kql,html,python",
       "tags": [
-        "Power BI",
         "Fabric",
-        "Data Analysis",
-        "Data Viz"
+        "KQL",
+        "Power BI",
+        "Real-Time",
+        "Python",
+        "Streaming"
       ],
-      "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
-      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
+      "summary": "For this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. ",
+      "description": "Project Overview\nFor this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. Instead of working with static datasets, this project focuses entirely on live ingestion, automated hot-storage management, and low-latency dashboarding within the Microsoft Fabric ecosystem.\n\nCore Architecture & Flow\nData Ingestion: A Python script deployed within a Fabric Environment continuously polls the public ISS REST API every 5 seconds, batching and pushing the live JSON data directly into a Fabric Eventstream.\n\nOrchestration: The streaming engine is fully automated using a Microsoft Fabric Data Pipeline, allowing the process to run persistently in the background.\n\nReal-Time Storage (KQL): The stream routes data into a Fabric Eventhouse KQL Database. Since the ISS completes one full orbit every 92 minutes, I implemented a custom database Retention Policy (softdelete = 92m) to automatically drop old telemetry points on the fly. This ensures the database always holds a perfect 'moving window' of exactly one orbit, preventing data bloating.\n\nLive Dashboarding (Power BI): The data is surfaced via DirectQuery on an Azure Maps visualization. To bypass standard admin-enforced refresh limits, I implemented Change Detection on the timestamp column. This triggers a visual update the exact millisecond a new coordinate hits the KQL table, keeping the map seamlessly centered on the ISS.\n\nKey Skills Demonstrated\nMicrosoft Fabric: Real-Time Intelligence, Eventstreams, Data Pipelines, and custom Environments.\n\nData Engineering: Real-time stream processing, REST API consumption, and automated data retention strategies.\n\nKQL (Kusto Query Language): Database administration, table schema design, and retention policy mapping.\n\nPower BI: DirectQuery optimization, advanced Azure Maps configurations, and Change Detection setup for live data.",
       "tools": [
-        "Power BI",
         "Fabric",
-        "HTML"
+        "Power BI",
+        "HTML",
+        "Python",
+        "KQL"
       ],
-      "thumbnail": "/pokemonheader.png",
+      "thumbnail": "/headeriss.png",
       "images": [
-        "/pokemon.png"
+        "/iss-screenshot1.png",
+        "/iss-screenshot2.png",
+        "/eventstream.png"
       ],
-      "video": "https://youtu.be/hla77SY1RI8",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/pokemon-analytics-suite",
+      "video": "https://www.youtube.com/watch?v=KBx_4xkWuu8",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/01_realtime-iss-tracker",
       "size": "large"
     },
     {
@@ -302,33 +308,27 @@
       "size": "large"
     },
     {
-      "title": "Real-Time ISS Tracker: Fabric Eventstream & KQL Case Study",
-      "category": "fabric,powerbi,kql,html,python",
+      "title": "Pokémon Analytics",
+      "category": "powerbi,fabric, dataviz,dataanalysis",
       "tags": [
-        "Fabric",
-        "KQL",
         "Power BI",
-        "Real-Time",
-        "Python",
-        "Streaming"
+        "Fabric",
+        "Data Analysis",
+        "Data Viz"
       ],
-      "summary": "For this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. ",
-      "description": "Project Overview\nFor this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. Instead of working with static datasets, this project focuses entirely on live ingestion, automated hot-storage management, and low-latency dashboarding within the Microsoft Fabric ecosystem.\n\nCore Architecture & Flow\nData Ingestion: A Python script deployed within a Fabric Environment continuously polls the public ISS REST API every 5 seconds, batching and pushing the live JSON data directly into a Fabric Eventstream.\n\nOrchestration: The streaming engine is fully automated using a Microsoft Fabric Data Pipeline, allowing the process to run persistently in the background.\n\nReal-Time Storage (KQL): The stream routes data into a Fabric Eventhouse KQL Database. Since the ISS completes one full orbit every 92 minutes, I implemented a custom database Retention Policy (softdelete = 92m) to automatically drop old telemetry points on the fly. This ensures the database always holds a perfect 'moving window' of exactly one orbit, preventing data bloating.\n\nLive Dashboarding (Power BI): The data is surfaced via DirectQuery on an Azure Maps visualization. To bypass standard admin-enforced refresh limits, I implemented Change Detection on the timestamp column. This triggers a visual update the exact millisecond a new coordinate hits the KQL table, keeping the map seamlessly centered on the ISS.\n\nKey Skills Demonstrated\nMicrosoft Fabric: Real-Time Intelligence, Eventstreams, Data Pipelines, and custom Environments.\n\nData Engineering: Real-time stream processing, REST API consumption, and automated data retention strategies.\n\nKQL (Kusto Query Language): Database administration, table schema design, and retention policy mapping.\n\nPower BI: DirectQuery optimization, advanced Azure Maps configurations, and Change Detection setup for live data.",
+      "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
+      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
       "tools": [
-        "Fabric",
         "Power BI",
-        "HTML",
-        "Python",
-        "KQL"
+        "Fabric",
+        "HTML"
       ],
-      "thumbnail": "/headeriss.png",
+      "thumbnail": "/pokemonheader.png",
       "images": [
-        "/iss-screenshot1.png",
-        "/iss-screenshot2.png",
-        "/eventstream.png"
+        "/pokemon.png"
       ],
-      "video": "https://www.youtube.com/watch?v=KBx_4xkWuu8",
-      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/01_realtime-iss-tracker",
+      "video": "https://youtu.be/hla77SY1RI8",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/pokemon-analytics-suite",
       "size": "large"
     },
     {
