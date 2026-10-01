@@ -1,7 +1,7 @@
 {
   "name": "Jeroen",
-  "title": "Senior Data Analyst and Power BI Developer",
-  "description": "Portfolio website of Jeroen - Senior Data Analyst and Power BI Developer",
+  "title": "Senior Data Analyst, Analytics Engineer and Power BI Developer",
+  "description": "Portfolio website of Jeroen - Senior Data Analyst, Analytics Engineer and Power BI Developer",
   "accentColor": "#06B6D4",
   "agentUrl": "https://geronimoanalytics.nl/agents",
   "social": {
@@ -29,7 +29,7 @@
     "Azure DevOps",
     "Visual Code"
   ],
-  "servicesHeading": "Services",
+  "servicesHeading": "What i do",
   "services": [
     {
       "title": "1. Power BI Report Development & Optimization",
