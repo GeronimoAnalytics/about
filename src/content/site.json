@@ -55,6 +55,10 @@
     {
       "title": "6. Fabric & Power BI Architecture & Governance",
       "description": "Setting up and maintaining what happens behind the curtain. From workspace tenant settings and strict security implementation to deep-dive health checks across your Fabric and Power BI environments, ensuring your platform remains highly performant, secure, and manageable as your organization scales."
+    },
+    {
+      "title": "7. Agentic BI Development",
+      "description": "AI agents are changing both how BI is built and how it is used. On the development side, I connect agents to semantic models via MCP to automate repetitive work, from generating and documenting DAX to model reviews at scale. On the user side, I build Fabric Data Agents and Copilot experiences on top of governed semantic models, so people can ask questions in plain language and get answers grounded in your business logic, not hallucinated KPIs."
     }
   ],
   "projects": [
