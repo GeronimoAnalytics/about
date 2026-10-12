@@ -1,7 +1,8 @@
 {
   "name": "Jeroen",
   "title": "Senior Data Analyst & Analytics Engineer | Bridging Microsoft Fabric & Custom Data Products (React / D3.js) | Power BI & Agentic BI",
-  "description": "Portfolio website of Jeroen - Senior Data Analyst, Analytics Engineer and Power BI Developer",
+  "shortTitle": "Senior Data Analyst & Analytics Engineer",
+  "description": "Jeroen - Senior Data Analyst & Analytics Engineer. Microsoft Fabric, Power BI, Agentic BI and custom data products built with React and D3.js.",
   "accentColor": "#06B6D4",
   "agentUrl": "https://geronimoanalytics.nl/agents",
   "social": {

@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from "../config";
 
-const prompt = `Fetch ${siteConfig.agentUrl} and read it as context about ${siteConfig.name} — a Senior Data Analyst and Power BI Developer.\n\nFirst, ask me about my data challenge or what I'm looking for, then wait for my answer. Then assess whether ${siteConfig.name} would be a good fit.`;
+const prompt = `Fetch ${siteConfig.agentUrl} and read it as context about ${siteConfig.name} — a ${siteConfig.shortTitle}.\n\nFirst, ask me about my data challenge or what I'm looking for, then wait for my answer. Then assess whether ${siteConfig.name} would be a good fit.`;
 const encodedPrompt = encodeURIComponent(prompt);
 ---
 
@@ -27,7 +27,7 @@ const encodedPrompt = encodeURIComponent(prompt);
         </p>
 
         <div class="bg-[#404a54] rounded-lg p-4 sm:p-6 font-mono text-sm sm:text-base text-white leading-relaxed">
-          <p>Fetch {siteConfig.agentUrl} and read it as context about {siteConfig.name} — a Senior Data Analyst and Power BI Developer.</p>
+          <p>Fetch {siteConfig.agentUrl} and read it as context about {siteConfig.name} — a {siteConfig.shortTitle}.</p>
           <br />
           <p>First, ask me about my data challenge or what I'm looking for, then wait for my answer. Then assess whether {siteConfig.name} would be a good fit.</p>
         </div>
