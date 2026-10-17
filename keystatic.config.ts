@@ -15,6 +15,16 @@ export default config({
         description: fields.text({ label: "Description", multiline: true }),
         accentColor: fields.text({ label: "Accent Color" }),
         agentUrl: fields.url({ label: "Agent URL" }),
+        availability: fields.object(
+          {
+            show: fields.checkbox({ label: "Show availability badge", defaultValue: true }),
+            employed: fields.checkbox({ label: "Currently employed", defaultValue: true }),
+            employedText: fields.text({ label: "Text when employed" }),
+            availableText: fields.text({ label: "Text when available" }),
+            subtext: fields.text({ label: "Second line" }),
+          },
+          { label: "Availability" }
+        ),
         social: fields.object(
           {
             email: fields.text({ label: "Email" }),
@@ -37,6 +47,8 @@ export default config({
             {
               title: fields.text({ label: "Service Title" }),
               description: fields.text({ label: "Service Description", multiline: true }),
+              short: fields.text({ label: "Short version (v2 site)" }),
+              chips: fields.array(fields.text({ label: "Chip" }), { label: "Chips (v2 site)", itemLabel: (props) => props.value }),
             },
             { label: "Service" }
           ),
