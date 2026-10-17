@@ -1,0 +1,151 @@
+# Porta: content editor for geronimoanalytics.nl
+# Saves go straight to GitHub (branch main) and the "Deploy to GitHub Pages" workflow publishes them.
+backend:
+  name: github
+  repo: GeronimoAnalytics/about
+  branch: main
+  commit_messages:
+    update: "Content: update {{slug}} via Porta"
+
+media_folder: public
+public_folder: /
+
+site_url: https://geronimoanalytics.nl
+display_url: https://geronimoanalytics.nl
+
+collections:
+  - name: content
+    label: Website content
+    editor: { preview: false }
+    files:
+      - name: site
+        label: All sections
+        file: src/content/site.json
+        format: json
+        fields:
+          # ---------- Profile ----------
+          - { name: name, label: "Profile · Name", widget: string }
+          - { name: shortTitle, label: "Profile · Short title (under your name)", widget: string }
+          - { name: title, label: "Profile · Long title (SEO / old homepage)", widget: string }
+          - { name: description, label: "Profile · Meta description (Google)", widget: text }
+          - { name: accentColor, label: "Profile · Accent color (old homepage)", widget: color, required: false }
+          - { name: agentUrl, label: "Profile · Agent page URL", widget: string }
+          - name: availability
+            label: "Availability badge"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: show, label: "Show the badge", widget: boolean, default: true }
+              - { name: employed, label: "Currently employed", widget: boolean, default: true, hint: "On: shows the 'employed' text. Off: shows the 'available' text with a green dot." }
+              - { name: employedText, label: "Text when employed", widget: string }
+              - { name: availableText, label: "Text when available", widget: string }
+              - { name: subtext, label: "Second line", widget: string, required: false }
+          - name: social
+            label: "Contact & social"
+            widget: object
+            fields:
+              - { name: email, label: Email, widget: string }
+              - { name: linkedin, label: LinkedIn URL, widget: string }
+              - { name: github, label: GitHub URL, widget: string }
+
+          # ---------- About ----------
+          - name: aboutMe
+            label: "About · Paragraphs"
+            widget: list
+            field: { name: paragraph, label: Paragraph, widget: text }
+
+          - name: skills
+            label: "About · Skills (old homepage)"
+            widget: list
+            field: { name: skill, label: Skill, widget: string }
+
+          # ---------- What I do ----------
+          - { name: servicesHeading, label: "What I do · Heading (old homepage)", widget: string }
+          - name: services
+            label: "What I do · Services"
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Title, widget: string, hint: "e.g. 1. Power BI Report Development & Optimization" }
+              - { name: short, label: Short version, widget: string, required: false }
+              - name: chips
+                label: Skill labels
+                widget: list
+                required: false
+                field: { name: chip, label: Label, widget: string }
+              - { name: description, label: "How I help (full text)", widget: text }
+
+          # ---------- Work ----------
+          - name: featuredWork
+            label: "Work · Projects"
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - name: category
+                label: Filter categories
+                widget: string
+                hint: "Comma-separated, no spaces. Options: powerbi, fabric, kql, python, dataanalysis, dataviz, html"
+              - name: tags
+                label: Tags on the card
+                widget: list
+                field: { name: tag, label: Tag, widget: string }
+              - { name: summary, label: Summary (card), widget: text }
+              - { name: description, label: Description (popup), widget: text }
+              - name: tools
+                label: Tools (popup)
+                widget: list
+                field: { name: tool, label: Tool, widget: string }
+              - { name: thumbnail, label: Card image, widget: image }
+              - name: images
+                label: Popup gallery
+                widget: list
+                field: { name: image, label: Image, widget: image }
+              - { name: video, label: YouTube link, widget: string, required: false }
+              - { name: link, label: GitHub link, widget: string }
+              - { name: size, label: Size, widget: hidden, default: large }
+
+          # ---------- Experience ----------
+          - name: experience
+            label: "Experience"
+            widget: list
+            summary: "{{title}} · {{company}}"
+            fields:
+              - { name: title, label: Job title, widget: string }
+              - { name: company, label: Company, widget: string }
+              - { name: dateRange, label: Period, widget: string, hint: "e.g. 2023 - Present" }
+              - name: bullets
+                label: Bullets
+                widget: list
+                field: { name: bullet, label: Bullet, widget: text }
+
+          # ---------- Certifications ----------
+          - name: education
+            label: "Certifications & education"
+            widget: list
+            summary: "{{degree}}"
+            hint: "Items containing DP-600 or PL-300 are shown as highlighted certifications."
+            fields:
+              - { name: degree, label: Certification / degree, widget: string }
+              - { name: school, label: Issuer / school, widget: string }
+              - { name: dateRange, label: Year(s), widget: string }
+              - name: achievements
+                label: Achievements
+                widget: list
+                required: false
+                field: { name: achievement, label: Achievement, widget: string }
+
+          # ---------- Legacy ----------
+          - name: projects
+            label: "Legacy · Project list (old homepage)"
+            widget: list
+            required: false
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: link, label: Link, widget: string }
+              - name: skills
+                label: Skills
+                widget: list
+                field: { name: skill, label: Skill, widget: string }
