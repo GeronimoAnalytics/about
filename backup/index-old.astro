@@ -1,0 +1,33 @@
+---
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import FeaturedWork from "../components/FeaturedWork.astro";
+import Services from "../components/Services.astro";
+import AboutCombined from "../components/AboutCombined.astro";
+import AskAgent from "../components/AskAgent.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+    <title>{siteConfig.name} - {siteConfig.shortTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero />
+      <FeaturedWork />
+      <Services />
+      <AboutCombined />
+      <AskAgent />
+    </main>
+    <Footer />
+  </body>
+</html>
