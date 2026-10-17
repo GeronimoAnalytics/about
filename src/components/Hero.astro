@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+const avail: any = (siteConfig as any).availability ?? { show: true, employed: true, employedText: "Currently employed and not available for assignments.", subtext: "Always ready to talk data!" };
 ---
 
 <div
@@ -149,16 +150,20 @@ import { siteConfig } from "../config";
         {siteConfig.title}
       </p>
     </div>
+    {avail.show !== false && (
     <div
       class="w-fit max-w-xs rotate-[-2deg] border-2 border-cyan-600 bg-white/80 px-5 py-4 text-gray-800 shadow-sm animate-fade-in animation-delay-600 lg:absolute lg:top-1/2 lg:right-24 lg:-translate-y-1/2"
     >
       <p class="text-sm sm:text-base font-semibold leading-relaxed">
-        Currently employed and not available for assignments.
+        {avail.employed !== false ? avail.employedText : avail.availableText}
       </p>
-      <p class="mt-2 border-t border-cyan-600/40 pt-2 text-sm sm:text-base font-medium text-cyan-700">
-        Always ready to talk data!
-      </p>
+      {avail.subtext && (
+        <p class="mt-2 border-t border-cyan-600/40 pt-2 text-sm sm:text-base font-medium text-cyan-700">
+          {avail.subtext}
+        </p>
+      )}
     </div>
+    )}
   </div>
   <div
     class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex gap-x-4 sm:gap-x-6 md:gap-x-8 text-gray-700 animate-fade-in animation-delay-600"
