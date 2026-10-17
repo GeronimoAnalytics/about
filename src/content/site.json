@@ -5,6 +5,13 @@
   "description": "Jeroen - Senior Data Analyst & Analytics Engineer. Microsoft Fabric, Power BI, Agentic BI and custom data products built with React and D3.js.",
   "accentColor": "#06B6D4",
   "agentUrl": "https://geronimoanalytics.nl/agents",
+  "availability": {
+    "show": true,
+    "employed": true,
+    "employedText": "Currently employed and not available for assignments.",
+    "availableText": "Open to new assignments.",
+    "subtext": "Always ready to talk data!"
+  },
   "social": {
     "email": "hello@geronimoanalytics.nl",
     "linkedin": "https://www.linkedin.com/in/jeroen-sparkles-data/",
@@ -34,31 +41,45 @@
   "services": [
     {
       "title": "1. Power BI Report Development & Optimization",
-      "description": "Translating complex business inquiries into fully operational, enterprise-grade reports that teams actually love to use. Whether building from scratch or diagnosing existing setups, I eliminate performance bottlenecks to keep your reporting fast, responsive, and efficient."
+      "description": "Translating complex business inquiries into fully operational, enterprise-grade reports that teams actually love to use. Whether building from scratch or diagnosing existing setups, I eliminate performance bottlenecks to keep your reporting fast, responsive, and efficient.",
+      "short": "Enterprise-grade reports that teams actually love to use, and that stay fast.",
+      "chips": ["Power BI Desktop", "Power BI Service", "DAX", "Performance tuning"]
     },
     {
       "title": "2. AI-Ready Semantic Modelling",
-      "description": "Capturing your specific business logic within robust, reusable semantic models (data models, relationships, and advanced DAX). I ensure you stop reinventing the wheel with disconnected reports, establishing a single source of truth that is fully optimized and primed for AI integration."
+      "description": "Capturing your specific business logic within robust, reusable semantic models (data models, relationships, and advanced DAX). I ensure you stop reinventing the wheel with disconnected reports, establishing a single source of truth that is fully optimized and primed for AI integration.",
+      "short": "Your business logic captured once in a reusable semantic model, ready for AI.",
+      "chips": ["Semantic modelling", "DAX", "Power Query M"]
     },
     {
       "title": "3. Data Storytelling & Bespoke Visuals",
-      "description": "Most dashboards fail on adoption, not data. I design interfaces rooted in cognitive psychology principles to speed up insight discovery. When standard charts fall short, I develop custom visuals tailored precisely to your requirements using HTML/CSS, D3.js, and Python."
+      "description": "Most dashboards fail on adoption, not data. I design interfaces rooted in cognitive psychology principles to speed up insight discovery. When standard charts fall short, I develop custom visuals tailored precisely to your requirements using HTML/CSS, D3.js, and Python.",
+      "short": "Dashboards built on cognitive design, and custom visuals when standard charts fall short.",
+      "chips": ["HTML / CSS", "SVG", "D3.js", "Python"]
     },
     {
       "title": "4. Cloud Data Analytics & Data Marts",
-      "description": "For data challenges that go beyond the dashboard layer. I write optimized queries, clean raw datasets, and structure them into clean data marts and 'golden layers'--delivering seamless analytics across both Databricks and Microsoft Fabric."
+      "description": "For data challenges that go beyond the dashboard layer. I write optimized queries, clean raw datasets, and structure them into clean data marts and 'golden layers'--delivering seamless analytics across both Databricks and Microsoft Fabric.",
+      "short": "Clean data marts and golden layers across Databricks and Microsoft Fabric.",
+      "chips": ["SQL", "Databricks", "Microsoft Fabric", "DBT"]
     },
     {
       "title": "5. Advanced Analytics & Deep-Dive Research",
-      "description": "For complex business questions that go far beyond standard operational dashboards. Utilizing Python and SQL, I run deep-dive research projects to extract actionable statistical truths. I help you solve high-impact puzzles, such as uncovering the underlying drivers of customer churn or calculating exactly how external variables like weather anomalies impact your sales performance."
+      "description": "For complex business questions that go far beyond standard operational dashboards. Utilizing Python and SQL, I run deep-dive research projects to extract actionable statistical truths. I help you solve high-impact puzzles, such as uncovering the underlying drivers of customer churn or calculating exactly how external variables like weather anomalies impact your sales performance.",
+      "short": "Statistical deep dives into high-impact questions, like churn drivers or weather effects on sales.",
+      "chips": ["Python", "SQL", "Statistics"]
     },
     {
       "title": "6. Fabric & Power BI Architecture & Governance",
-      "description": "Setting up and maintaining what happens behind the curtain. From workspace tenant settings and strict security implementation to deep-dive health checks across your Fabric and Power BI environments, ensuring your platform remains highly performant, secure, and manageable as your organization scales."
+      "description": "Setting up and maintaining what happens behind the curtain. From workspace tenant settings and strict security implementation to deep-dive health checks across your Fabric and Power BI environments, ensuring your platform remains highly performant, secure, and manageable as your organization scales.",
+      "short": "Secure, healthy and scalable Fabric and Power BI environments, behind the curtain.",
+      "chips": ["Tenant settings", "Security", "Health checks"]
     },
     {
       "title": "7. Agentic BI Development",
-      "description": "AI agents are changing both how BI is built and how it is used. On the development side, I connect agents to semantic models via MCP to automate repetitive work, from generating and documenting DAX to model reviews at scale. On the user side, I build Fabric Data Agents and Copilot experiences on top of governed semantic models, so people can ask questions in plain language and get answers grounded in your business logic, not hallucinated KPIs."
+      "description": "AI agents are changing both how BI is built and how it is used. On the development side, I connect agents to semantic models via MCP to automate repetitive work, from generating and documenting DAX to model reviews at scale. On the user side, I build Fabric Data Agents and Copilot experiences on top of governed semantic models, so people can ask questions in plain language and get answers grounded in your business logic, not hallucinated KPIs.",
+      "short": "AI agents on governed semantic models, both for building BI and for using it.",
+      "chips": ["MCP", "Fabric Data Agents", "Copilot"]
     }
   ],
   "projects": [
@@ -268,7 +289,7 @@
         "Python",
         "Streaming"
       ],
-      "summary": "For this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. ",
+      "summary": "A live ISS tracker built end to end in Microsoft Fabric: Python ingestion, Eventstream, a KQL database that always holds exactly one orbit, and a Power BI map that updates the moment new data lands.",
       "description": "Project Overview\nFor this project, I built an end-to-end real-time data streaming pipeline that tracks the live location of the International Space Station (ISS) and visualizes its orbital path on a dynamic dashboard. Instead of working with static datasets, this project focuses entirely on live ingestion, automated hot-storage management, and low-latency dashboarding within the Microsoft Fabric ecosystem.\n\nCore Architecture & Flow\nData Ingestion: A Python script deployed within a Fabric Environment continuously polls the public ISS REST API every 5 seconds, batching and pushing the live JSON data directly into a Fabric Eventstream.\n\nOrchestration: The streaming engine is fully automated using a Microsoft Fabric Data Pipeline, allowing the process to run persistently in the background.\n\nReal-Time Storage (KQL): The stream routes data into a Fabric Eventhouse KQL Database. Since the ISS completes one full orbit every 92 minutes, I implemented a custom database Retention Policy (softdelete = 92m) to automatically drop old telemetry points on the fly. This ensures the database always holds a perfect 'moving window' of exactly one orbit, preventing data bloating.\n\nLive Dashboarding (Power BI): The data is surfaced via DirectQuery on an Azure Maps visualization. To bypass standard admin-enforced refresh limits, I implemented Change Detection on the timestamp column. This triggers a visual update the exact millisecond a new coordinate hits the KQL table, keeping the map seamlessly centered on the ISS.\n\nKey Skills Demonstrated\nMicrosoft Fabric: Real-Time Intelligence, Eventstreams, Data Pipelines, and custom Environments.\n\nData Engineering: Real-time stream processing, REST API consumption, and automated data retention strategies.\n\nKQL (Kusto Query Language): Database administration, table schema design, and retention policy mapping.\n\nPower BI: DirectQuery optimization, advanced Azure Maps configurations, and Change Detection setup for live data.",
       "tools": [
         "Fabric",
@@ -322,7 +343,7 @@
         "Data Viz"
       ],
       "summary": "Welcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.",
-      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\nBash\ngit clone https://github.com/yourusername/pokemon-analytics-suite.git\nOpen the Report: Launch the .pbix file inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
+      "description": "The Ultimate Pokémon Analytics Suite\nWelcome to The Ultimate Pokémon Analytics Suite! This is a custom, high-fidelity Power BI data visualization dashboard designed to break down Pokémon stats, attributes, and team combinations with a premium, arcade-style UI.\n\nWhether you are min-maxing your competitive team or just want to see how Pikachu's speed stacks up against your favorite Pokémon, this suite turns raw pocket monster data into actionable battle intelligence.\n\nFeatures\nPoké Details Screen: Deep-dive into individual Pokémon metrics, base stat totals, and Body Mass Index (BMI) tracking.\n\nDynamic Stat Bars: Visualized attribute breakdowns covering HP, Attack, Defense, Special Attack, Special Defense, and Speed.\n\nAdvanced Analytics Overlays: Custom UI components including Head-to-Head comparisons, BMI vs. Speed scatter insights, Element Distribution matrices, and Team Selection optimization.\n\nSleek Retro-Modern UI: Custom-themed dashboard with animated accents, custom icon wrappers, and a fully interactive sidebar selector for seamless navigation through the Pokédex.\n\nBuilt With\nPower BI Desktop — Core data modeling and dashboard orchestration.\n\nDAX (Data Analysis Expressions) — Advanced data calculations, dynamic filtering, and custom KPI metrics.\n\nHTML/CSS & SVG Canvas — Custom visuals, clean curved borders, and tailored UI element grouping.\n\nThe Pokédex API / Custom Dataset — Cleaned, optimized, and structured Pokémon attribute data.\n\nHow to Use\nClone the Repo:\n\ngit clone https://github.com/GeronimoAnalytics/data-portfolio.git\n\nOpen the Report: Launch the .pbix file from the pokemon-analytics-suite folder inside Power BI Desktop.\n\nExplore the Data: Use the left-hand sidebar list to slice and dice stats by specific Pokémon, or toggle the bottom tabs to change your analytical perspective.\n\nInsights & Goals\nThis project was built to showcase how standard business intelligence tools (like Power BI) can be pushed past their default corporate templates into highly immersive, themed user experiences. By leveraging custom canvas designs, HTML inserts, and complex data relationships, it demonstrates that data visualization can be both incredibly informative and visually striking.",
       "tools": [
         "Power BI",
         "Fabric",
