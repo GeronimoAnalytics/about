@@ -202,6 +202,37 @@
   ],
   "featuredWork": [
     {
+      "title": "F1 Pitwall: Lambiase Edition",
+      "category": "python,powerbi,dataviz,html,dataanalysis",
+      "tags": [
+        "Power BI",
+        "Python",
+        "React",
+        "Data Viz"
+      ],
+      "summary": "Post-race F1 analysis in Python and Power BI: telemetry, derived G-forces, tyre degradation and pit-window strategy, replayed in a React custom visual.",
+      "description": "An F1 post-race analysis and strategy project built with Python and Power BI, finished with a React-based custom visual that replays the race like a real pit wall.\n\nWhat it does:\n\n• Driver comparison: lap times, sectors, speed and telemetry side by side.\n\n• Derived physics: longitudinal and lateral G-forces and brake pressure estimated from public telemetry. These are derived estimates, not official sensor readings.\n\n• Tyre strategy: models tyre degradation and pit loss, explores alternative stop strategies and predicts the pit window.\n\n• Race replay: a React + Canvas custom visual with six tabs (Strategy, Telemetry, Pit stop, History, Tyres, Rival), a live track map, a draggable lap timeline and a responsive layout for desktop and mobile.\n\nData & architecture:\n\n• Sources: Jolpica for race results and pit stops, OpenF1 for historical lap timing and telemetry.\n\n• ETL: Python transforms the data into Parquet files and a star schema for Power BI Import mode, plus a single feed table for the custom visual.\n\n• Tested: the physics and tyre models are covered by pytest, and a backtest replays every real pit stop against the strategy model.\n\nThe repository includes sample output for eight Grands Prix and a user guide in English and Dutch.",
+      "tools": [
+        "Python",
+        "Power BI",
+        "React",
+        "TypeScript",
+        "Canvas",
+        "Parquet",
+        "OpenF1",
+        "Jolpica"
+      ],
+      "thumbnail": "/work/pitwall-desktop.png",
+      "images": [
+        "/work/pitwall-desktop.png",
+        "/work/pitwall-mobile.png",
+        "/work/pitwall-mockup-desktop.jpg"
+      ],
+      "video": "https://www.youtube.com/watch?v=savnM07RADA",
+      "link": "https://github.com/GeronimoAnalytics/data-portfolio/tree/main/F1-Pitwall",
+      "size": "large"
+    },
+    {
       "title": "Momentum Analysis: World Cup Final 2026 - Spain vs Argentina",
       "category": "python,dataviz,html,dataanalysis",
       "tags": [
