@@ -56,7 +56,7 @@
 .facts dd.acc{color:var(--accent)}
 @media (max-width:560px){.rings-panel{grid-template-columns:1fr;gap:20px}}
 
-.vid-poster{position:relative;display:block;color:#fff}
+.vid-poster{position:relative;display:block;width:100%;padding:0;color:#fff;cursor:pointer}
 .vid-poster img{width:100%;max-height:460px;object-fit:cover;filter:brightness(.5)}
 .vid-poster span{position:absolute;inset:0;display:grid;place-items:center}
 .vid-poster b{padding:12px 20px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.4);font-family:"JetBrains Mono",monospace;font-size:.85rem;letter-spacing:.08em;transition:background .2s}
@@ -126,8 +126,14 @@ View on GitHub
       const show = (item) => {
         main.innerHTML = "";
         if (item.type === "video") {
-          const a = document.createElement("a");
-          a.className = "vid-poster"; a.href = item.src; a.target = "_blank"; a.rel = "noopener";
+          const a = document.createElement("button");
+          a.type = "button"; a.className = "vid-poster"; a.setAttribute("aria-label", "Play video");
+          a.addEventListener("click", () => {
+            const f = document.createElement("iframe");
+            f.src = toEmbed(item.src) + "?autoplay=1&rel=0";
+            f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; f.title = "Video";
+            main.innerHTML = ""; main.appendChild(f);
+          });
           a.innerHTML = '<img alt=""><span><b>▶ VIDEO</b></span>';
           a.querySelector("img").src = img(item.poster);
           main.appendChild(a);
